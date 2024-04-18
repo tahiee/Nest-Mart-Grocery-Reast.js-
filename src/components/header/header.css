@@ -1,0 +1,125 @@
+header {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  padding: 25px 0; 
+}
+
+header .headerSearch {
+  width: 100%;
+  height: 45px;
+  /* border: 1px solid #3bb77e; */
+  border: 1px solid #bce3c9;
+  padding: 10px 20px;
+  border-radius: 7px;
+}
+
+header .headerSearch .selectDrop {
+  width: 165px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 400;
+  
+}
+
+header .headerSearch .selectDrop::after {
+  content: "";
+  width: 0.5px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+header .headerSearch .search {
+  width: 75%;
+  padding-left: 30px;
+  position: relative;
+}
+
+header .headerSearch .search input {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  outline: none !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+header .headerSearch .search .searchIcon {
+  position: absolute;
+  top: 10px;
+  right: -20px;
+  opacity: 0.7;
+}
+.countryWrapper {
+  width: 180px !important;
+  border: 1px solid #bce3c9;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-radius: 7px;
+}
+.selectDrop {
+  width: 100%;
+}
+header .headerTabs {
+  padding-left: 35px;
+}
+header .headerTabs li span {
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+}
+header .headerTabs li {
+  display: inline-block;
+  margin-right: 18px;
+  position: relative;
+}
+header .headerTabs li img {
+  margin-right: 2px;
+  vertical-align: middle;
+}
+header .headerTabs li span.badge {
+  width: 25px;
+  height: 25px;
+  font-weight: 400;
+  position: absolute;
+  top: -16px;
+  left: 10px;
+}
+.accountDropDownMenu {
+  position: absolute;
+  top: 130%;
+  right: -50px;
+  height: auto;
+  width: 220%;
+  background: #fff;
+  /* box-shadow: 0 3px 6px rgba(0 0 0 / 20%); */
+  box-shadow: 0 3px 6px rgba(0 ,0 ,0, 0.16),0 3px 6px rgba(0 ,0 ,0, 0.23);
+  padding: 0 !important;
+  z-index: 100;
+}
+.accountDropDownMenu li {
+  width: 100% !important;
+  list-style: none;
+  /* font-size: 10px; */
+  margin: 0px !important;
+}
+.accountDropDownMenu li button:hover{
+  background: #bce3c9;
+}
+.accountDropDownMenu li button {
+  width: 100% !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  color: black !important;
+  text-transform: capitalize !important;
+  padding: 10px 15px !important;
+}
+
+.accountDropDownMenu li button svg {
+  opacity: 0.7;
+  margin-right: 7px !important;
+}

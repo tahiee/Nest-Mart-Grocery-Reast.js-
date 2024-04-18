@@ -1,0 +1,110 @@
+.nav {
+  width: 100%;
+  height: 70px;
+  margin: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+.nav .catTab {
+  padding: 8px 20px !important;
+  font-size: 15px !important;
+  text-transform: capitalize !important;
+}
+.nav nav ul li {
+  position: relative;
+}
+.nav nav ul li button {
+  text-transform: capitalize !important;
+  padding: 10px 10px !important;
+  color: rgba(0, 0, 0, 0.8) !important;
+  font-size: 15px !important;
+}
+.nav nav ul li button a {
+  text-decoration: none !important;
+  font-size: 15px !important;
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+.nav .part3 .phNu {
+  margin-left: auto;
+}
+.nav .part3 .phNu svg {
+  font-size: 40px !important;
+  opacity: 0.8;
+}
+.nav .part3 .phNu h3 {
+  font-size: 25px !important;
+  line-height: 25px !important;
+}
+.nav .part3 .phNu p {
+  font-size: 15px !important;
+  text-align: center;
+}
+
+/* page */
+.nav nav .dropDown_Menu {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  width: 200px;
+  height: auto;
+  background: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 0px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.1s ease-in-out;
+}
+
+.nav nav .dropDown_Menu li {
+  width: 100% !important;
+  list-style: none;
+  margin: 0px !important;
+  font-weight: 500;
+}
+.nav nav .dropDown_Menu li button {
+  width: 100% !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  color: black !important;
+  text-transform: capitalize !important;
+  padding: 8px 15px !important;
+}
+.nav nav .dropDown_Menu li button:hover {
+  background: #bce3c9 !important;
+}
+nav ul {
+  padding: 0px;
+}
+.nav nav li:hover .dropDown_Menu {
+  top: 120%;
+  opacity: 1;
+  visibility: inherit;
+}
+
+.megaMenu img {
+  border-radius: 7px;
+height: 90%;
+width: 100%;
+}
+.megaMenu {
+  border-radius: 7px;
+  height: auto !important;
+  padding: 15px 25px !important;
+}
+.nav nav ul li button:hover {
+  background: #bce3c9;
+  color: white !important;
+}
+
+.megaMenu .col ul li {
+  margin-bottom: 10px !important;
+
+}
+
+.megaMenu .col ul li a {
+  text-decoration: none;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
+}
