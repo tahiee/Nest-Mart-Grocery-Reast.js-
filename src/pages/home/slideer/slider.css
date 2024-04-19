@@ -1,0 +1,121 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css");
+
+.homeSlider {
+  padding: 2px 0px;
+}
+.home_slider-main {
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+}
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  background: #f2f3f4 !important;
+  z-index: 1000 !important;
+  text-align: center;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.slick-arrow.slick-next {
+  right: 1% !important;
+}
+.slick-arrow.slick-prev {
+  left: 1% !important;
+}
+
+.slick-arrow:hover::before {
+  color: #fff !important;
+}
+.slick-arrow:hover {
+  background: #3bb77e !important;
+  color: white !important;
+}
+
+.slick-next::before {
+  text-align: center;
+  color: rgb(201, 201, 201) !important;
+  /* color: rgb(0, 0, 0, 0.1); */
+  font-size: 20px !important;
+}
+.slick-prev::before {
+  text-align: center;
+  font-size: 20px !important;
+  color: rgb(201, 201, 201) !important;
+}
+.home_slider-main .slick-dots {
+  position: absolute;
+  bottom: 30px !important;
+}
+
+.home_slider-main .slick-dots button::before {
+  height: 10px !important;
+  width: 10px !important;
+  font-size: 13px;
+}
+.slick-active button::before {
+  color: #3bb77e !important;
+}
+
+.home_slider-main .item {
+  position: relative;
+}
+.home_slider-main .item .info {
+  position: absolute;
+  top: 18%;
+  left: 7%;
+  z-index: 100;
+}
+
+.home_slider-main .item .info h2 {
+  font-size: 60px !important;
+  line-height: 65px;
+  font-weight: bolder;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.home_slider-main .item .info p {
+  font-size: 28px !important;
+  color: #7e7e7e;
+  font-weight: 50q0;
+}
+.homeSlider .newsletterBanner {
+  position: absolute;
+  width: 500px;
+  height: 70px;
+  bottom: 65px;
+  left: 8%;
+  z-index: 10;
+}
+.homeSlider .newsletterBanner input {
+  width: 90%;
+  height: 70%;
+  border-radius: 30px;
+  border: 0px;
+  outline: none;
+  padding-left: 45px;
+  font-size: 16px;
+  color: #7e7e7e;
+}
+.homeSlider .newsletterBanner .emailIcon {
+  position: absolute;
+  top: 17%;
+  left: 3%;
+}
+
+.homeSlider .newsletterBanner button {
+  padding: 10px 40px;
+  border-radius: 30px;
+  position: absolute;
+  top: 0;
+  right: 10%;
+  /* left: 60%; */
+  color: #fff;
+  height: 70%;
+  font-size: 16px;
+}

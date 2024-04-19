@@ -1,8 +1,11 @@
 import React from 'react'
+import HomeSlider from './slideer/Slider'
 
 const Home = () => {
   return (
-    <div>Welcome to Home</div>
+    <>
+    <HomeSlider/>
+    </>
   )
 }
 
