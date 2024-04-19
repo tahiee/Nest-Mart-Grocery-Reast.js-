@@ -1,8 +1,79 @@
-.productThumb{
-    width: 100%;
-    height: 300px;
-    border:  1px solid rgb(0,0,0,0.2);
-    border-radius: 7px;
-    overflow: hidden;
-    padding: 15px;
+.productThumb {
+  width: 100%;
+  height: auto;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  border-radius: 7px;
+  overflow: hidden;
+  padding: 15px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.productThumb:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.productThumb:hover .imgWrapper img {
+    transform: scale(1.2);
+}
+.productThumb .imgWrapper img {
+  transition: all 0.3s ease-in-out;
+}
+.productThumb .imgWrapper {
+  overflow: hidden;
+  width: 100%;
+}
+.brand-Button {
+  margin-left: auto !important;
+}
+.productThumb .CatName {
+  color: #000;
+  opacity: 0.8;
+  font-size: 14px;
+}
+.productThumb .title {
+  margin: 10px 0px;
+}
+.productThumb .title a {
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 25px;
+}
+.productThumb .brand {
+  color: rgb(0, 0, 0, 0.6);
+}
+.productThumb .brand {
+  font-size: 12px;
+}
+.productThumb .brand a {
+  text-decoration: none;
+}
+.productThumb .price {
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 18px;
+}
+
+.productThumb .oldPrice {
+  font-size: 14px;
+  opacity: 0.8;
+  color: #000;
+  text-decoration: line-through;
+}
+.productThumb button .addshopicon {
+  width: 25px;
+  height: 15px;
+}
+.productThumb button {
+  background: #d7f4e6 !important ;
+  font-size: 12px;
+  color: #3bb77e;
+  padding: 5px 20px;
+  width: 75px;
+  height: 35px;
+  border-radius: 10px;
+}
+.productThumb button:hover {
+  background: #3bb77e !important;
+  color: white;
 }
