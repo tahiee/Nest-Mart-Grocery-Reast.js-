@@ -1,0 +1,36 @@
+.homeSection {
+  margin-bottom: 20px;
+  padding: 25px 0px;
+}
+.filterTab li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0, 0.8);
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+.homeSection .container-fluid ul li {
+  display: inline;
+  margin-left: 15px;
+}
+.homeSection .container-fluid ul {
+  margin-left: auto;
+}
+
+.filterTab li a:hover {
+  top: -2px;
+  color: #3bb77e;
+}
+
+.homeSection .product-row{
+    display: flex;
+    padding: 30px 0px;
+    margin: 0px -15px;
+}
+
+.homeSection .product-row .item{
+    width: 20%;
+    
+    padding:  0px 15px ;
+}

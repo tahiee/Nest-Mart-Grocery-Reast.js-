@@ -6,7 +6,13 @@
   box-sizing: border-box;
 }
 body {
-  font-family: "Roboto", sans-serif;
+  /* font-family: "Roboto", sans-serif; */
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.transitions{
+  transition: all 0.3s ease-in-out;
 }
 
 .container-fluid {
@@ -21,4 +27,9 @@ body {
 }
 .text-g {
   color: #3bb77e;
+}
+.hd{
+  font-size: 30px;
+  font-weight: 500;
+  /* margin-bottom: 20px !important; */
 }

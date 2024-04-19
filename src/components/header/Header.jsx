@@ -62,7 +62,7 @@ const Header = () => {
       <header>
         <div className="container-fluid">
           <div className="row align-items-center ">
-            <div className="col-sm-2">
+            <div className="col-sm-2 d-flex align-items-center">
               <img src={Logo} />
             </div>
 
@@ -85,7 +85,7 @@ const Header = () => {
 
             <div className="col-sm-5 d-flex align-items-center">
               <div className="ml-auto d-flex align-items-center">
-                <div className="countryWrapper">
+                <div className="countryWrapper w-100">
                   <SelectDrop
                     data={countryList}
                     placeholder={"Your Location"}
@@ -133,28 +133,28 @@ const Header = () => {
                       {openDropDown !== false && (
                         <ul className="accountDropDownMenu">
                           <li>
-                            <Button className="align-item-center">
+                            <Button className="align-items-center">
                               {" "}
                               <Person2Outlined /> My Account
                             </Button>{" "}
                           </li>
                           <li>
-                            <Button className="align-item-center">
+                            <Button className="align-items-center">
                               <MapOutlined /> Order Tracking
                             </Button>{" "}
                           </li>
                           <li>
-                            <Button className="align-item-center">
+                            <Button className="align-items-center">
                               <FavoriteBorderOutlined /> My Cart List
                             </Button>{" "}
                           </li>
                           <li>
-                            <Button className="align-item-center">
+                            <Button className="align-items-center">
                               <SettingsAccessibility /> Settings
                             </Button>{" "}
                           </li>
                           <li>
-                            <Button className="align-item-center">
+                            <Button className="align-items-center">
                               <LoginOutlined /> Login
                             </Button>{" "}
                           </li>
