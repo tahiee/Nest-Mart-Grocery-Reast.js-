@@ -42,34 +42,34 @@ const Home = () => {
 
           <div className="row product-row">
             <div className="item">
-              <Product/>
+              <Product tag='hot'/>
             </div>
             <div className="item">
-              <Product/>
+              <Product tag='new'/>
             </div>
             <div className="item">
-              <Product/>
+              <Product tag='best'/>
             </div>
             <div className="item">
-              <Product/>
+              <Product tag='null'/>
             </div>
             <div className="item">
-              <Product/>
+              <Product tag='sale'/>
             </div>
             <div className="item">
-              <Product/>
+              <Product tag='null'/>
             </div>
             <div className="item">
-              <Product/>
+              <Product tag='best'/>
             </div>
             <div className="item">
-              <Product/>
+              <Product tag='null'/>
             </div>
             <div className="item">
-              <Product/>
+              <Product tag='null'/>
             </div>
             <div className="item">
-              <Product/>
+              <Product tag='new'/>
             </div>
           </div>
         </div>

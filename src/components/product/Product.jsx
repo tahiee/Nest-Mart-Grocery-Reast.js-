@@ -6,13 +6,46 @@ import Rating from "@mui/material/Rating";
 import { Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
-const Product = () => {
+import {
+  CompareArrowsOutlined,
+  FavoriteBorderOutlined,
+  RemoveRedEyeOutlined,
+} from "@mui/icons-material";
+import Tooltip from "@mui/material/Tooltip";
+
+const Product = (props) => {
   return (
     <>
       <div className="productThumb">
+        <span className={`badge ${props.tag}`} >{props.tag}</span>
         <div className="imgWrapper">
-          <span>10%</span>
           <img src={Product1} className="w-100" />
+
+          <div className="overLay tranisition">
+            <ul className="">
+              <li className="">
+                <Tooltip title="WishList" placement="top-start">
+                  <a className="cursor">
+                    <FavoriteBorderOutlined />
+                  </a>
+                </Tooltip>
+              </li>
+              <li className="">
+                <Tooltip title="Compare" placement="top">
+                  <a className="cursor">
+                    <CompareArrowsOutlined />
+                  </a>
+                </Tooltip>
+              </li>
+              <li className="">
+                <Tooltip title="Quick View" placement="top-end">
+                <a className="cursor" style={{ border: "none" }}>
+                  <RemoveRedEyeOutlined />
+                </a>
+                </Tooltip>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="info">
@@ -35,7 +68,7 @@ const Product = () => {
               <span className="oldPrice">$33.33</span>
             </div>
             <Button className="bg-g brand-Button ">
-              <AddShoppingCartIcon  className="addshopicon"/>
+              <AddShoppingCartIcon className="addshopicon" />
               Add
             </Button>
           </div>

@@ -2,24 +2,26 @@
   width: 100%;
   height: auto;
   border: 1px solid rgb(0, 0, 0, 0.1);
-  border-radius: 7px;
+  border-radius: 15px;
   overflow: hidden;
   padding: 15px;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  position: relative;
 }
 .productThumb:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 .productThumb:hover .imgWrapper img {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 .productThumb .imgWrapper img {
   transition: all 0.3s ease-in-out;
 }
 .productThumb .imgWrapper {
+  position: relative;
   overflow: hidden;
-  width: 100%;
+  width: 100% !important;
 }
 .brand-Button {
   margin-left: auto !important;
@@ -30,7 +32,7 @@
   font-size: 14px;
 }
 .productThumb .title {
-  margin: 10px 0px;
+  margin: 5px 0px;
 }
 .productThumb .title a {
   color: #000;
@@ -76,4 +78,96 @@
 .productThumb button:hover {
   background: #3bb77e !important;
   color: white;
+}
+.productThumb .badge.hot {
+  background: #f74b81 !important;
+}
+.productThumb .badge.new {
+  background: #67bcee !important;
+}
+.productThumb .badge.best {
+  background: #38877e !important;
+}
+.productThumb .badge.sale {
+  background: #f59758 !important;
+}
+.productThumb .badge.null {
+  display: none;
+}
+.productThumb .badge {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: red;
+  color: #fff;
+  width: 25%;
+  height: 30px;
+  display: inline-block;
+  z-index: 10;
+  padding: 9px 18px !important;
+  font-size: 12px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 30px;
+  text-transform: capitalize;
+}
+
+.productThumb:hover .imgWrapper .overLay {
+  opacity: 1;
+  transform: scale(1);
+  background: rgba(255, 255, 255, 0.255);
+}
+.productThumb .imgWrapper .overLay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: rgba(255,255, 255, 0.1); */
+  opacity: 0;
+  transform: scale(0.8);
+}
+.productThumb .imgWrapper .overLay ul li {
+  display: inline;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin: 0px !important;
+}
+.productThumb .imgWrapper .overLay ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 130px;
+  height: 40px;
+  margin: 0px !important;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #bce3c9;
+  padding: 0px !important;
+  text-align: center;
+}
+.productThumb .imgWrapper .overLay ul li a {
+  border-right: 1px solid #bce3c9;
+  padding: 10px;
+  display: block;
+}
+
+.productThumb .imgWrapper .overLay ul li a svg {
+  color: #3bb77e;
+  opacity: 0.7;
+}
+.productThumb .imgWrapper .overLay ul li a svg:hover {
+  color: orangered;
+}
+.css-ja5taz-MuiTooltip-tooltip {
+  background: #3bb77e !important;
+}
+.MuiTooltip-popper[data-popper-placement*="top"]
+  .css-ja5taz-MuiTooltip-tooltip {
+  margin-bottom: 8px !important;
 }

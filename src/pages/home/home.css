@@ -22,7 +22,9 @@
   top: -2px;
   color: #3bb77e;
 }
-
+.filterTab{
+    margin-bottom: 0px !important;
+}
 .homeSection .product-row{
     display: flex;
     padding: 30px 0px;
