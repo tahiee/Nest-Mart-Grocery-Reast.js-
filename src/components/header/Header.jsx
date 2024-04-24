@@ -37,8 +37,7 @@ const Header = () => {
 
   const [openDropDown, setOpenDropDown] = useState(false);
   const countryList = [];
-  // const scrollRef = useRef();
-
+  
   useEffect(() => {
     getCountry("https://countriesnow.space/api/v0.1/countries/");
   }, []);
@@ -57,10 +56,22 @@ const Header = () => {
       console.log(error);
     }
   };
+  const HeaderRef = useRef();
+  
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      let position = window.pageYOffset;
+      if (position > 100) {
+        HeaderRef.current.classList.add("fixed");
+      } else {
+        HeaderRef.current.classList.remove("fixed");
+      }
+    });
+  }, []);
 
   return (
     <>
-      <div className="headerWrapper" >
+      <div className="headerWrapper" ref={HeaderRef}>
         <header>
           <div className="container-fluid">
             <div className="row align-items-center ">
@@ -170,7 +181,7 @@ const Header = () => {
             </div>
           </div>
         </header>
-          <Navbar />
+        <Navbar />
       </div>
     </>
   );

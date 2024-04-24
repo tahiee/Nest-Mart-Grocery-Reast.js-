@@ -40,6 +40,7 @@ const CatSlider = () => {
     arrows: true,
     autoplay: true,
     autoplaySpeed: 2000,
+
   };
   return (
     <>
@@ -50,9 +51,9 @@ const CatSlider = () => {
             {itemsbg.length !== 0 &&
               itemsbg.map((item, index) => {
                 return (
-                  <div className="item">
+                  <div className="item" key={index}>
                     <div className="info" style={{background:item}}>
-                      <img src={itme1} />
+                      <img src={itme1} alt={`Cat ${index + 1}`}/>
                       <h5>Vegetables</h5>
                       <p>6 Items</p>
                     </div>
