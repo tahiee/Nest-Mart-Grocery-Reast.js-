@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Logo from "../../images/logo.svg";
 import searchIcon from "../../images/search.png";
 import "./header.css";
@@ -37,6 +37,7 @@ const Header = () => {
 
   const [openDropDown, setOpenDropDown] = useState(false);
   const countryList = [];
+  // const scrollRef = useRef();
 
   useEffect(() => {
     getCountry("https://countriesnow.space/api/v0.1/countries/");
@@ -59,116 +60,118 @@ const Header = () => {
 
   return (
     <>
-      <header>
-        <div className="container-fluid">
-          <div className="row align-items-center ">
-            <div className="col-sm-2 d-flex align-items-center">
-              <img src={Logo} />
-            </div>
+      <div className="headerWrapper" >
+        <header>
+          <div className="container-fluid">
+            <div className="row align-items-center ">
+              <div className="col-sm-2 d-flex align-items-center">
+                <img src={Logo} />
+              </div>
 
-            {/* headerSearch start */}
-            <div className="col-sm-5">
-              <div className="headerSearch d-flex align-items-center">
-                <SelectDrop
-                  data={categoire}
-                  placeholder={"All Cateogories"}
-                  icon={false}
-                />
+              {/* headerSearch start */}
+              <div className="col-sm-5">
+                <div className="headerSearch d-flex align-items-center">
+                  <SelectDrop
+                    data={categoire}
+                    placeholder={"All Cateogories"}
+                    icon={false}
+                  />
 
-                <div className="search">
-                  <input type="text" placeholder="Search Your Items..." />
-                  <img src={searchIcon} className="searchIcon cursor" />
+                  <div className="search">
+                    <input type="text" placeholder="Search Your Items..." />
+                    <img src={searchIcon} className="searchIcon cursor" />
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* headerSearch End */}
+              {/* headerSearch End */}
 
-            <div className="col-sm-5 d-flex align-items-center">
-              <div className="ml-auto d-flex align-items-center">
-                <div className="countryWrapper w-100">
-                  <SelectDrop
-                    data={countryList}
-                    placeholder={"Your Location"}
-                    icon={<LocationOnIcon style={{ opacity: "0.5" }} />}
-                  />
+              <div className="col-sm-5 d-flex align-items-center">
+                <div className="ml-auto d-flex align-items-center">
+                  <div className="countryWrapper w-100">
+                    <SelectDrop
+                      data={countryList}
+                      placeholder={"Your Location"}
+                      icon={<LocationOnIcon style={{ opacity: "0.5" }} />}
+                    />
+                  </div>
+
+                  <ClickAwayListener onClickAway={() => setOpenDropDown(false)}>
+                    <ul className="list list-inline mb-0 headerTabs">
+                      <li className="list-inline-items">
+                        <span>
+                          {" "}
+                          <img src={IconCopare} />
+                          <span className="badge bg-success rounded-circle">
+                            3
+                          </span>
+                          Compare
+                        </span>
+                      </li>
+                      <li className="list-inline-items">
+                        <span>
+                          {" "}
+                          <img src={Iconheart} />
+                          <span className="badge bg-success rounded-circle">
+                            5
+                          </span>
+                          WishList
+                        </span>
+                      </li>
+                      <li className="list-inline-items">
+                        <span>
+                          {" "}
+                          <img src={IconCart} />
+                          <span className="badge bg-success rounded-circle">
+                            2
+                          </span>
+                          Cart
+                        </span>
+                      </li>
+                      <li className="list-inline-items">
+                        <span onClick={() => setOpenDropDown(!openDropDown)}>
+                          <img src={IconAccount} />
+                          Account
+                        </span>
+                        {openDropDown !== false && (
+                          <ul className="accountDropDownMenu">
+                            <li>
+                              <Button className="align-items-center">
+                                {" "}
+                                <Person2Outlined /> My Account
+                              </Button>{" "}
+                            </li>
+                            <li>
+                              <Button className="align-items-center">
+                                <MapOutlined /> Order Tracking
+                              </Button>{" "}
+                            </li>
+                            <li>
+                              <Button className="align-items-center">
+                                <FavoriteBorderOutlined /> My Cart List
+                              </Button>{" "}
+                            </li>
+                            <li>
+                              <Button className="align-items-center">
+                                <SettingsAccessibility /> Settings
+                              </Button>{" "}
+                            </li>
+                            <li>
+                              <Button className="align-items-center">
+                                <LoginOutlined /> Login
+                              </Button>{" "}
+                            </li>
+                          </ul>
+                        )}
+                      </li>
+                    </ul>
+                  </ClickAwayListener>
                 </div>
-
-                <ClickAwayListener onClickAway={() => setOpenDropDown(false)}>
-                  <ul className="list list-inline mb-0 headerTabs">
-                    <li className="list-inline-items">
-                      <span>
-                        {" "}
-                        <img src={IconCopare} />
-                        <span className="badge bg-success rounded-circle">
-                          3
-                        </span>
-                        Compare
-                      </span>
-                    </li>
-                    <li className="list-inline-items">
-                      <span>
-                        {" "}
-                        <img src={Iconheart} />
-                        <span className="badge bg-success rounded-circle">
-                          5
-                        </span>
-                        WishList
-                      </span>
-                    </li>
-                    <li className="list-inline-items">
-                      <span>
-                        {" "}
-                        <img src={IconCart} />
-                        <span className="badge bg-success rounded-circle">
-                          2
-                        </span>
-                        Cart
-                      </span>
-                    </li>
-                    <li className="list-inline-items">
-                      <span onClick={() => setOpenDropDown(!openDropDown)}>
-                        <img src={IconAccount} />
-                        Account
-                      </span>
-                      {openDropDown !== false && (
-                        <ul className="accountDropDownMenu">
-                          <li>
-                            <Button className="align-items-center">
-                              {" "}
-                              <Person2Outlined /> My Account
-                            </Button>{" "}
-                          </li>
-                          <li>
-                            <Button className="align-items-center">
-                              <MapOutlined /> Order Tracking
-                            </Button>{" "}
-                          </li>
-                          <li>
-                            <Button className="align-items-center">
-                              <FavoriteBorderOutlined /> My Cart List
-                            </Button>{" "}
-                          </li>
-                          <li>
-                            <Button className="align-items-center">
-                              <SettingsAccessibility /> Settings
-                            </Button>{" "}
-                          </li>
-                          <li>
-                            <Button className="align-items-center">
-                              <LoginOutlined /> Login
-                            </Button>{" "}
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                  </ul>
-                </ClickAwayListener>
               </div>
             </div>
           </div>
-        </div>
-        <Navbar />
-      </header>
+        </header>
+          <Navbar />
+      </div>
     </>
   );
 };
