@@ -64,7 +64,7 @@ const Product = (props) => {
           </span>
           <div className="d-flex align-items-center">
             <div className="d-flex align-items-center">
-              <span className="price text-g ">$28.33</span>
+              <span className="price text-g" style={{fontWeight:'800'}}>$28.33</span>
               <span className="oldPrice">$33.33</span>
             </div>
             <Button className="bg-g brand-Button ">

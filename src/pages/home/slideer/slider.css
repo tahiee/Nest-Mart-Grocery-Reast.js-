@@ -11,7 +11,7 @@
   position: relative;
 }
 .slick-arrow {
-  position: absolute;
+  position: absolute !important;
   top: 50%;
   width: 42px !important;
   height: 42px !important;
@@ -25,6 +25,7 @@
 
 .slick-arrow.slick-next {
   right: 1% !important;
+  
 }
 .slick-arrow.slick-prev {
   left: 1% !important;
@@ -84,41 +85,4 @@
   font-size: 22px !important;
   color: #7e7e7e;
   font-weight: 400;
-}
-.homeSlider .newsletterBanner {
-  position: absolute;
-  width: 500px;
-  height: 70px;
-  bottom: 65px;
-  left: 8%;
-  z-index: 10;
-}
-.homeSlider .newsletterBanner input {
-  width: 90%;
-  height: 70%;
-  border-radius: 30px;
-  border: 0px;
-  outline: none;
-  padding-left: 50px;
-  font-size: 16px;
-  color: #7e7e7e;
-}
-.homeSlider .newsletterBanner .emailIcon {
-  position: absolute;
-  top: 17%;
-  left: 3%;
-  z-index: 10;
-}
-
-.homeSlider .newsletterBanner button {
-  padding: 10px 40px;
-  border-radius: 30px;
-  position: absolute;
-  top: 0;
-  right: 10%;
-  /* left: 60%; */
-  color: #fff;
-  height: 70%;
-  font-size: 16px;
-  text-transform: capitalize !important;
 }

@@ -3,9 +3,8 @@ import "./slider.css";
 import Slider from "react-slick";
 import sliderimg1 from "../../../images/slider-1.png";
 import sliderimg2 from "../../../images/slider-2.png";
-import { EmailOutlined } from "@mui/icons-material";
-import { Button } from "@mui/material";
-
+import NewLetter from "../../../components/newsLetter/NewLetter";
+import '../../../components/newsLetter/newletter.css'
 const HomeSlider = () => {
   var settings = {
     dots: true,
@@ -44,11 +43,7 @@ const HomeSlider = () => {
               </div>
             </div>
           </Slider>
-          <div className="newsletterBanner">
-            <span className="emailIcon"><EmailOutlined/></span>
-            <input type="text" placeholder="Your Email Address..." />
-          <Button className="bg-g">Subscribe</Button>
-          </div>
+          <NewLetter/>
         </div>
       </section>
     </>

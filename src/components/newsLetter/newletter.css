@@ -1,0 +1,37 @@
+.newsletterBanner {
+  position: absolute;
+  width: 500px;
+  height: 80px;
+  bottom: 65px;
+  left: 8%;
+  z-index: 10;
+}
+.newsletterBanner input {
+  width: 90%;
+  height: 70%;
+  border-radius: 30px;
+  border: 0px;
+  outline: none;
+  padding-left: 50px;
+  font-size: 16px;
+  color: #7e7e7e;
+}
+.newsletterBanner .emailIcon {
+  position: absolute;
+  top: 17%;
+  left: 3%;
+  z-index: 10;
+}
+
+.newsletterBanner button {
+  padding: 10px 40px;
+  border-radius: 30px;
+  position: absolute;
+  top: 0;
+  right: 10%;
+  /* left: 60%; */
+  color: #fff;
+  height: 70%;
+  font-size: 16px;
+  text-transform: capitalize !important;
+}

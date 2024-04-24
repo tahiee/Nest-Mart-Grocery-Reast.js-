@@ -7,6 +7,14 @@ import Product from "../../components/product/Product";
 import PopularBanner from "../../images/banner4.jpg";
 import Slider from "react-slick";
 import sliderimg1 from "../../images/popular/product-8-1.jpg";
+import TopProducts from "./topProducts/TopProducts";
+import img1 from '../../images/thumbnail-1.jpg'
+import img2 from '../../images/thumbnail-2.jpg'
+import img3 from '../../images/thumbnail-3.jpg'
+import TockriPersonImg from '../../images/newsletter.png'
+import NewLetter from "../../components/newsLetter/NewLetter";
+import Footer from "../../components/footer/Footer";
+
 const Home = () => {
   var settings = {
     dots: false,
@@ -117,34 +125,68 @@ const Home = () => {
             <div className="col-md-9 p-0">
               <Slider {...settings} className="productSlider">
                 <div className="item">
-                <Product tag="new" />
+                  <Product tag="new" />
                 </div>
                 <div className="item">
-                <Product tag="hot" />
+                  <Product tag="hot" />
                 </div>
                 <div className="item">
-                <Product tag="sale" />
+                  <Product tag="sale" />
                 </div>
                 <div className="item">
-                <Product tag="best" />
+                  <Product tag="best" />
                 </div>
                 <div className="item">
-                <Product tag="null" />
+                  <Product tag="null" />
                 </div>
                 <div className="item">
-                <Product tag="hot" />
+                  <Product tag="hot" />
                 </div>
               </Slider>
             </div>
           </div>
         </div>
       </section>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+
+      <section className="TopProductSection">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col">
+              <TopProducts title="Top Selling" img={img1}/>
+            </div>
+
+            <div className="col">
+              <TopProducts title="Trending Products" img={img2}/>
+            </div>
+
+            <div className="col">
+              <TopProducts title="Recently Added" img={img1}/>
+            </div>
+
+            <div className="col">
+              <TopProducts title="Top Rated"img={img3}/>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section className="newsLetterSection">
+        <div className="container-fluid">
+          <div className="box d-flex align-items-center">
+            <div className="info">
+              <h2>Stay home & get your daily <br /> needs from our shop</h2>
+              <p>Start You'r Daily Shopping with Nest Mart</p>
+              <br /><br />
+              <NewLetter/>
+            </div>
+            <div className="img">
+              <img src={TockriPersonImg} className="w-100" />
+            </div>
+          </div>
+        </div>
+      </section> <br />
+      <Footer/>
     </>
   );
 };

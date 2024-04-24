@@ -50,18 +50,7 @@
 .productThumb .brand a {
   text-decoration: none;
 }
-.productThumb .price {
-  font-size: 17px;
-  font-weight: 700;
-  margin-right: 18px;
-}
 
-.productThumb .oldPrice {
-  font-size: 14px;
-  opacity: 0.8;
-  color: #000;
-  text-decoration: line-through;
-}
 .productThumb button .addshopicon {
   width: 25px;
   height: 15px;
