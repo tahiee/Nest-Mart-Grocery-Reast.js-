@@ -11,9 +11,7 @@ import TopProducts from "./topProducts/TopProducts";
 import img1 from '../../images/thumbnail-1.jpg'
 import img2 from '../../images/thumbnail-2.jpg'
 import img3 from '../../images/thumbnail-3.jpg'
-import TockriPersonImg from '../../images/newsletter.png'
-import NewLetter from "../../components/newsLetter/NewLetter";
-import Footer from "../../components/footer/Footer";
+
 
 const Home = () => {
   var settings = {
@@ -169,24 +167,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-
-      <section className="newsLetterSection">
-        <div className="container-fluid">
-          <div className="box d-flex align-items-center">
-            <div className="info">
-              <h2>Stay home & get your daily <br /> needs from our shop</h2>
-              <p>Start You'r Daily Shopping with Nest Mart</p>
-              <br /><br />
-              <NewLetter/>
-            </div>
-            <div className="img">
-              <img src={TockriPersonImg} className="w-100" />
-            </div>
-          </div>
-        </div>
-      </section> <br />
-      <Footer/>
+      
     </>
   );
 };
