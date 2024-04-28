@@ -1,5 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #3bb77e;
+}
 * {
   padding: 0;
   margin: 0;
@@ -11,7 +27,7 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-.transitions{
+.transitions {
   transition: all 0.3s ease-in-out;
 }
 
@@ -28,7 +44,7 @@ body {
 .text-g {
   color: #3bb77e;
 }
-.hd{
+.hd {
   font-size: 30px;
   font-weight: 500;
   /* margin-bottom: 20px !important; */
@@ -45,3 +61,150 @@ body {
   color: #000;
   text-decoration: line-through;
 }
+
+/* Starts listing css */
+.listingPage {
+  width: 100%;
+  height: auto;
+  padding: 45px 0px;
+}
+.breadCrumb {
+  width: 100%;
+  height: auto;
+  padding: 45px 25px;
+  background: #d8f1e5;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+.breadCrumb h1 {
+  font-weight: 600;
+  opacity: 0.9;
+  font-size: 50px;
+}
+.breadCrumb ul li {
+  margin-right: 15px;
+}
+.breadCrumb ul {
+  margin-bottom: 0px;
+}
+.breadCrumb ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Ends listing css */
+/* start SideBar css */
+
+.sideBarWrapper {
+  max-width: 20% !important;
+  flex: 0 0 20% !important ;
+}
+.rightContent .topStrip {
+padding: 0px 15px;
+}
+.rightContent .topStrip p {
+  font-size: 16px;
+}
+.rightContent .topStrip span {
+  font-weight: 600;
+}
+.rightContent {
+  max-width: 80% !important;
+  flex: 0 0 80% !important;
+}
+.sideBarWrapper .SideBar {
+  position: sticky;
+  top: 100px;
+}
+.sideBarWrapper .SideBar .card {
+  padding: 25px;
+  border-radius: 15px;
+}
+.sideBarWrapper .SideBar .card h3 {
+  font-size: 24px;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.sideBarWrapper .SideBar .card h3::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #ccc;
+  bottom: 0px;
+  left: 0px;
+}
+.sideBarWrapper .SideBar .card h3::before {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 3px;
+  background: #98e0b0;
+  bottom: 0px;
+  left: 0px;
+  z-index: 10;
+}
+.sideBarWrapper .SideBar .card .cardList .cardItem h4 {
+  font-size: 15px;
+}
+.sideBarWrapper .SideBar .card .cardList .cardItem {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+}
+.sideBarWrapper .SideBar .card .cardList .cardItem:hover {
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+.sideBarWrapper .SideBar .card .cardList .cardItem .rounded-circle {
+  background: #98e0b0;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  font-size: 12px;
+}
+.RangePriceSpanMargin {
+  margin-left: auto;
+}
+
+.filters {
+  padding: 25px 0px;
+}
+.filters ul {
+  max-height: 150px;
+  overflow-y: scroll;
+  margin: 0px;
+  margin-left: -12px;
+}
+.filters ul li {
+  list-style: none;
+  width: 100%;
+}
+.sideBarWrapper .SideBar .btn svg {
+  width: 20px;
+  height: 20px;
+}
+.sideBarWrapper .SideBar .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  /* height: 30px; */
+}
+.btn-g {
+  background: #3bb77e !important;
+  padding: 5px 15px;
+  border-radius: 8px;
+  text-transform: capitalize;
+}
+.btn-g:hover {
+  background: #fdc040 !important;
+}
+/* Ends SideBar css */

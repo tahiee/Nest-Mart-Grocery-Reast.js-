@@ -74,7 +74,7 @@ footer .part2 ul li a {
   text-decoration: none;
 }
 footer .lastStrip {
-  padding: 15px 0px;
+  padding: 15px 15px;
 }
 .phNu {
   margin-left: auto;
@@ -95,7 +95,7 @@ footer .lastStrip {
   margin: auto;
 }
 footer .lastStrip .part3 .officalPart3{
-    padding-left: 15px !important;
+    padding-left: 35px !important;
 }
 footer .lastStrip .part3 h5{
 margin-bottom: 0px;

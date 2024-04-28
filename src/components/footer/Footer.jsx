@@ -269,7 +269,7 @@ const Footer = () => {
               <hr />
 
               <div className="row lastStrip">
-                <div className="col-md-3">
+                <div className="col-md-3 ml-4">
                   <p>
                     ©2024 Nest - React template.
                     <br />

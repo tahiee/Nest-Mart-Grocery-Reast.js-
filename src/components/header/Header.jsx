@@ -61,7 +61,7 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       let position = window.pageYOffset;
-      if (position > 90) {
+      if (position > 80) {
         HeaderRef.current.classList.add("fixed");
       } else {
         HeaderRef.current.classList.remove("fixed");
@@ -76,7 +76,7 @@ const Header = () => {
           <div className="container-fluid">
             <div className="row align-items-center ">
               <div className="col-sm-2 d-flex align-items-center">
-                <img src={Logo} />
+                <img src={Logo} style={{height:'60px', width:"190px"}}/>
               </div>
 
               {/* headerSearch start */}

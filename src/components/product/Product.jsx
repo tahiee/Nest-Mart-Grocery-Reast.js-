@@ -13,11 +13,11 @@ import {
 } from "@mui/icons-material";
 import Tooltip from "@mui/material/Tooltip";
 
-const Product = (props) => {
+const Product = ({tag , buttonWidth}) => {
   return (
     <>
       <div className="productThumb">
-        <span className={`badge ${props.tag}`} >{props.tag}</span>
+        <span className={`badge ${tag}`} >{tag}</span>
         <div className="imgWrapper">
           <img src={Product1} className="w-100" />
 
@@ -67,7 +67,7 @@ const Product = (props) => {
               <span className="price text-g" style={{fontWeight:'800'}}>$28.33</span>
               <span className="oldPrice">$33.33</span>
             </div>
-            <Button className="bg-g brand-Button ">
+            <Button className="bg-g brand-Button " style={{ width: buttonWidth }}>
               <AddShoppingCartIcon className="addshopicon" />
               Add
             </Button>
