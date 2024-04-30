@@ -33,12 +33,37 @@ body {
 .transitions {
   transition: all 0.3s ease-in-out;
 }
-
+img:focus {
+  outline: none;
+}
 .container-fluid {
   padding: 0px 30px;
 }
 .cursor {
   cursor: pointer;
+}
+.btn-border {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  padding: 14px 15px;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: capitalize;
+  border-radius: 8px;
+  background: white;
+}
+.btn-border:hover {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  background: #3bb77e !important ;
+  color: #fff;
+}
+.btn-g {
+  background: #3bb77e !important;
+  padding: 5px 15px;
+  border-radius: 8px;
+  text-transform: capitalize;
+  border: none;
+}
+.btn-g:hover {
+  background: #fdc040 !important;
 }
 .bg-g,
 .bg-success {
@@ -236,15 +261,7 @@ p {
   width: 75px;
   /* height: 30px; */
 }
-.btn-g {
-  background: #3bb77e !important;
-  padding: 5px 15px;
-  border-radius: 8px;
-  text-transform: capitalize;
-}
-.btn-g:hover {
-  background: #fdc040 !important;
-}
+
 /* Ends SideBar css */
 
 .MarginAuto {
@@ -302,6 +319,10 @@ p {
   overflow: hidden;
   border-radius: 15px;
 }
+
+.zoomSlider * {
+  outline: none !important;
+}
 .zoomSlider {
   padding-top: 12px !important;
 }
@@ -311,6 +332,7 @@ p {
 }
 .zoomSlider .slick-slide .item {
   margin-right: 12px !important;
+  cursor: pointer;
 }
 .zoomSlider .slick-current {
   border: 1px solid #3bb77e !important;
@@ -327,7 +349,7 @@ p {
 .productSize {
   width: 100%;
   height: auto;
-  padding: 25px 0px;
+  padding: 10px 0px;
 }
 
 .productSize ul {
@@ -354,5 +376,82 @@ p {
 .productSize ul li a.active {
   background: #3bb77e !important;
   color: white !important;
+}
+
+.addCartSection {
+  width: 100%;
+  height: auto;
+}
+.addCartSection .counterSection {
+  width: 100px;
+  height: 60px;
+  border: 1px solid #3bb77e;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px;
+}
+.addCartSection .counterSection input {
+  width: 80px;
+  height: 40px;
+  border: 0px;
+  outline: none;
+  padding: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -webkit-appearance: textfield; /* Safari, Chrome, Edge */
+  -moz-appearance: textfield; /* Firefox */
+  appearance: textfield; /* Standard */
+}
+.counterSection {
+  margin-right: 10px;
+}
+.addCartSection .counterSection {
+  position: relative;
+}
+.addCartSection .counterSection .arrow {
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.5;
+}
+.addCartSection .counterSection .arrow.plus {
+  top: 3px;
+  right: 15px;
+}
+.addCartSection .counterSection .arrow.minus {
+  bottom: 3px;
+  right: 15px;
+}
+.addCartSection .btn-g {
+  padding: 14px 15px !important;
+}
+.addTourchBtn svg {
+  font-size: 25px !important;
+}
+.detailsPageTab {
+  border-radius: 25px !important;
+}
+.customTabs ul li button:hover {
+  background: #3bb77e !important;
+  border: none;
+  color: white;
+}
+.customTabs ul li {
+  margin-right: 30px !important;
+}
+.customTabs ul li button {
+  padding: 10px 25px;
+  border: 1px solid rgba(45, 45, 45, 0.3);
+  border-radius: 30px;
+  background: white ;
+  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 /* End Detils css  */

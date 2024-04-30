@@ -5,7 +5,7 @@ header {
   padding: 15px 0;
 }
 .headerWrapper {
-  animation: fadeInDown 0.7s ease-in-out 0s 1 normal none running;
+  animation: fadeInDown 0.7s ease 0s 1 normal none running;
   animation-name: fadeInDown;
   /* animation-name: slide-out-down; */
   transition: all 0.3s ease 0s;

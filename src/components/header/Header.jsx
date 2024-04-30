@@ -64,7 +64,7 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       let position = window.pageYOffset;
-      if (position > 80) {
+      if (position > 40) {
         HeaderRef.current.classList.add("fixed");
       } else {
         HeaderRef.current.classList.remove("fixed");
