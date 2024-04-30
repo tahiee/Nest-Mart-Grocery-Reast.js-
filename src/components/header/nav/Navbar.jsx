@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./nav.css";
 import { Button } from "@mui/material";
 import {
@@ -10,6 +10,9 @@ import { Link } from "react-router-dom";
 import MegaImgt from "../../../images/360_F_712724773_cFHfl8fvajfRJntpVHI2o4kI3ram9ZbE.jpg";
 
 const Navbar = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="nav d-flex align-items-center">
@@ -17,9 +20,11 @@ const Navbar = () => {
           <div className="row position-relative">
             <div className="col-sm-3 part1 d-flex align-items-center">
               <Button className="bg-g text-white catTab">
+                <Link to={'/404'} style={{textDecoration:"none" , color:"white"}}>
                 <GridView />
                 &nbsp; Browes All Cateogories
                 <KeyboardArrowDown />
+                </Link>
               </Button>
             </div>
 
@@ -27,13 +32,13 @@ const Navbar = () => {
               <nav>
                 <ul className="list list-inline mb-0">
                   <li className="list-inline-item">
-                    <Button >
-                      <Link>Home</Link>
+                    <Button>
+                      <Link to={"/"}>Home</Link>
                     </Button>
                   </li>
                   <li className="list-inline-item">
                     <Button>
-                      <Link>About</Link>
+                      <Link to={"/about"}>About</Link>
                     </Button>
                   </li>
                   <li className="list-inline-item">
@@ -111,57 +116,22 @@ const Navbar = () => {
                       <ul>
                         <li>
                           <Button>
-                            <Link to={"/about"}>About</Link>
+                            <Link to={"/"}>Shop</Link>
                           </Button>
                         </li>
                         <li>
                           <Button>
-                            <Link to={"/about"}>Contact</Link>
+                            <Link to={"/details"}>Product Details</Link>
                           </Button>
                         </li>
                         <li>
                           <Button>
-                            <Link to={"/about"}>My Account</Link>
+                            <Link to={"/listing"}>Listing</Link>
                           </Button>
                         </li>
                         <li>
                           <Button>
-                            <Link to={"/about"}>Login</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Register</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Forget Passowrd</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Rest Password</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Privacy policy</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Purchase Guide</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Teams & Services</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>404 Pages</Link>
+                            <Link to={"/404"}>404 Pages</Link>
                           </Button>
                         </li>
                       </ul>
@@ -176,36 +146,72 @@ const Navbar = () => {
                       <div className="row">
                         <div className="col">
                           <h4 className="text-g">Fruites & Vegetabels</h4>
-                        <ul className="mt-3 mb-0">
-                          <li><Link to="">Meat & Poultry</Link></li>
-                          <li><Link to="">Fresh Vegetables</Link></li>
-                          <li><Link to="">Herbs & Seasonings </Link></li>
-                          <li><Link to="">Cuts & Sprouts</Link></li>
-                          <li><Link to="">Exotis Fruits & Veggies</Link></li>
-                          <li><Link to="">Packges & Products</Link></li>
-                        </ul>
+                          <ul className="mt-3 mb-0">
+                            <li>
+                              <Link to="">Meat & Poultry</Link>
+                            </li>
+                            <li>
+                              <Link to="">Fresh Vegetables</Link>
+                            </li>
+                            <li>
+                              <Link to="">Herbs & Seasonings </Link>
+                            </li>
+                            <li>
+                              <Link to="">Cuts & Sprouts</Link>
+                            </li>
+                            <li>
+                              <Link to="">Exotis Fruits & Veggies</Link>
+                            </li>
+                            <li>
+                              <Link to="">Packges & Products</Link>
+                            </li>
+                          </ul>
                         </div>
                         <div className="col">
                           <h4 className="text-g">Breakfast & Dairy</h4>
                           <ul className="mt-3 mb-0">
-                          <li><Link to="">Meat & Poultry</Link></li>
-                          <li><Link to="">Fresh Vegetables</Link></li>
-                          <li><Link to="">Herbs & Seasonings </Link></li>
-                          <li><Link to="">Cuts & Sprouts</Link></li>
-                          <li><Link to="">Exotis Fruits & Veggies</Link></li>
-                          <li><Link to="">Packges & Products</Link></li>
-                        </ul>
+                            <li>
+                              <Link to="">Meat & Poultry</Link>
+                            </li>
+                            <li>
+                              <Link to="">Fresh Vegetables</Link>
+                            </li>
+                            <li>
+                              <Link to="">Herbs & Seasonings </Link>
+                            </li>
+                            <li>
+                              <Link to="">Cuts & Sprouts</Link>
+                            </li>
+                            <li>
+                              <Link to="">Exotis Fruits & Veggies</Link>
+                            </li>
+                            <li>
+                              <Link to="">Packges & Products</Link>
+                            </li>
+                          </ul>
                         </div>
                         <div className="col">
                           <h4 className="text-g">Meat & Seafood</h4>
                           <ul className="mt-3 mb-0">
-                          <li><Link to="">Meat & Poultry</Link></li>
-                          <li><Link to="">Fresh Vegetables</Link></li>
-                          <li><Link to="">Herbs & Seasonings </Link></li>
-                          <li><Link to="">Cuts & Sprouts</Link></li>
-                          <li><Link to="">Exotis Fruits & Veggies</Link></li>
-                          <li><Link to="">Packges & Products</Link></li>
-                        </ul>
+                            <li>
+                              <Link to="">Meat & Poultry</Link>
+                            </li>
+                            <li>
+                              <Link to="">Fresh Vegetables</Link>
+                            </li>
+                            <li>
+                              <Link to="">Herbs & Seasonings </Link>
+                            </li>
+                            <li>
+                              <Link to="">Cuts & Sprouts</Link>
+                            </li>
+                            <li>
+                              <Link to="">Exotis Fruits & Veggies</Link>
+                            </li>
+                            <li>
+                              <Link to="">Packges & Products</Link>
+                            </li>
+                          </ul>
                         </div>
                         <div className="col">
                           <img src={MegaImgt} className="mt-3 mb-0" />
@@ -225,7 +231,6 @@ const Navbar = () => {
                             <Link to={"/about"}>Blogs</Link>
                           </Button>
                         </li>
-                        
                       </ul>
                     </div>
                   </li>

@@ -21,6 +21,9 @@ import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 import Navbar from "./nav/Navbar";
 
 const Header = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [categoire, setcategoris] = useState([
     "Milks & Dairies",
     "Wines & Drinks",

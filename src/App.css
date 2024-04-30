@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css");
+
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -41,8 +44,17 @@ body {
 .bg-success {
   background: #3bb77e !important;
 }
+.text-org {
+  color: #fdc040;
+}
 .text-g {
   color: #3bb77e;
+}
+.text-light {
+  color: #b6b6b6 !important;
+}
+p {
+  color: #7e7e7e;
 }
 .hd {
   font-size: 30px;
@@ -87,11 +99,16 @@ body {
 .breadCrumb ul {
   margin-bottom: 0px;
 }
+
 .breadCrumb ul li a {
   text-decoration: none;
   color: #000;
   font-size: 15px;
   font-weight: 500;
+}
+.breadCrumb ul li a:hover {
+  color: #3bb77e !important;
+  font-weight: 800 !important;
 }
 
 /* Ends listing css */
@@ -101,8 +118,29 @@ body {
   max-width: 20% !important;
   flex: 0 0 20% !important ;
 }
+.rightContent .topStrip .tab_ {
+  width: 160px;
+}
+.rightContent .topStrip .tab_ .accountDropDownMenu {
+  top: 110% !important;
+  left: 0px !important;
+  width: 100%;
+}
+.rightContent .topStrip .tab_ .btn_ {
+  background: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  padding: 9px 8px !important;
+  font-size: 12px;
+  text-transform: capitalize !important;
+  color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px !important;
+  width: 90% !important ;
+}
+.rightContent .topStrip .tab_ .btn_:hover {
+  color: #3bb77e;
+}
 .rightContent .topStrip {
-padding: 0px 15px;
+  padding: 0px 15px;
 }
 .rightContent .topStrip p {
   font-size: 16px;
@@ -208,3 +246,113 @@ padding: 0px 15px;
   background: #fdc040 !important;
 }
 /* Ends SideBar css */
+
+.MarginAuto {
+  margin-left: auto;
+}
+
+/* Start Detils css  */
+
+.detailsContainer {
+  max-width: 90%;
+}
+.breadCrumb2 {
+  width: 100%;
+  height: auto;
+  padding: 10px 15px;
+  /* background: #d8f1e5 !important; */
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.breadCrumb3 {
+  background: none;
+  list-style: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+.breadCrumb3 li a {
+  text-decoration: none;
+  color: #000;
+}
+.breadCrumb3 li a:hover {
+  color: #45d56b;
+}
+.detailPage .productInfo h2 {
+  font-size: 35px !important;
+  font-weight: 600;
+}
+.detailPage .productInfo .priceSec .priceLarge {
+  font-size: 60px;
+  font-weight: 600;
+}
+.detailPage .productInfo .priceSec .text-org {
+  font-size: 20px;
+  font-weight: 400;
+}
+.detailPage .productInfo .priceSec .text-light {
+  font-size: 30px !important;
+  font-weight: 700 !important;
+  text-decoration: line-through !important;
+}
+.productZoom {
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.zoomSlider {
+  padding-top: 12px !important;
+}
+.zoomSlider .slick-slide {
+  border-radius: 15px;
+  overflow: hidden;
+}
+.zoomSlider .slick-slide .item {
+  margin-right: 12px !important;
+}
+.zoomSlider .slick-current {
+  border: 1px solid #3bb77e !important;
+}
+.zoomSlider .slick-arrow {
+  width: 34px !important;
+  height: 34px !important;
+}
+/* 
+.productInfo .productSize ul li:hover {
+  color: white !important;
+} */
+
+.productSize {
+  width: 100%;
+  height: auto;
+  padding: 25px 0px;
+}
+
+.productSize ul {
+  margin: 0px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+.productSize ul li {
+  margin-right: 15px !important;
+}
+.productSize ul li a {
+  border-radius: 5px;
+  text-decoration: none;
+  color: gray;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+.productSize ul li a.active {
+  background: #3bb77e !important;
+  color: white !important;
+}
+/* End Detils css  */
