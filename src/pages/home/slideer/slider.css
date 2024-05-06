@@ -6,16 +6,16 @@
 .home_slider-main {
   border-radius: 25px;
   overflow: hidden;
-  position: relative;
+  position: relative ;
 }
 .slick-arrow {
-  position: absolute !important;
+  position: absolute ;
   top: 50%;
   width: 42px !important;
   height: 42px !important;
   border-radius: 50% !important;
   background: #f2f3f4 !important;
-  z-index: 1000 !important;
+  z-index: 10!important;
   text-align: center;
   transition: all 0.2s ease-in-out !important;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

@@ -1,0 +1,76 @@
+/* Header Section Starts */
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .headerWrapper .ResPart1 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  .headerWrapper .ResPart1 .NavbarToggle {
+    width: 40px;
+  }
+  .headerWrapper .ResPart1 .NavbarToggle svg {
+    font-size: 40px;
+  }
+
+  .headerWrapper .ResPart3.d-flex {
+    display: none !important;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 992px) {
+  .Nav-Cat-Res-Hide {
+    display: none !important;
+  }
+  .container-fluid {
+    padding: 0px 15px !important ;
+  }
+  .headerSearch {
+    position: fixed !important;
+    top: 0;
+    right: -100%;
+    opacity: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100% !important;
+    background: #fff;
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    padding: 15px !important;
+    padding-top: 90px !important;
+    border: 0px !important;
+    transition: all 0.3s ease-in-out;
+  }
+  .headerSearch.open {
+    opacity: 1;
+    right: 0px;
+  }
+  header .headerSearch .selectDrop {
+    width: 100% !important;
+  }
+  header .headerSearch .search {
+    padding-left: 0px !important;
+    width: 100%;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    padding: 10px !important;
+    margin-top: 15px;
+  }
+  header .headerSearch .search .searchIcon {
+    top: 20px !important;
+    right: -15px !important;
+  }
+  .CloseSearch {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    z-index: 1000;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+  }
+  .CloseSearch svg {
+    font-size: 32px !important;
+  }
+  .nav{
+    display: none !important;
+  }
+}
+
+/* Header Section End */

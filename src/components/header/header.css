@@ -3,24 +3,37 @@ header {
   height: auto;
   margin: auto;
   padding: 15px 0;
+  background: #fff;
 }
 .headerWrapper {
+  transition: all 0.3s ease-in-out;
+  background: #fff;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 1000;
+}
+.afterHeader {
+  margin-top: 170px;
+}
+/* .headerWrapper {
   animation: fadeInDown 0.7s ease 0s 1 normal none running;
   animation-name: fadeInDown;
-  /* animation-name: slide-out-down; */
   transition: all 0.3s ease 0s;
   box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
-  /* transition: all 0.3s ease-in-out; */
   background: #fff;
-  /* box-shadow: 0px 8px 20px 0 rgb(0, 0, 0, 0.05); */
+} */
+.headerWrapper.fixed {
+  top: -104px;
 }
-.fixed {
-  position: fixed ;
-  top: -108px ;
-  left: 0px ;
-  width: 100% ;
+/* .fixed {
+  position: fixed;
+  top: -108px;
+  left: 0px;
+  width: 100%;
   z-index: 100;
-}
+} */
 /* .headerWrapper{
   position: sticky !important;
   top: 0px !important;

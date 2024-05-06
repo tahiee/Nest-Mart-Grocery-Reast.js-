@@ -1,10 +1,10 @@
 .newsletterBanner {
   position: absolute;
-  width: 500px;
-  height: 80px;
-  bottom: 65px;
-  left: 8%;
-  z-index: 10;
+    width: 452px;
+    height: 68px;
+    bottom: 76px;
+    left: 8%;
+    z-index: 10;
 }
 .newsletterBanner input {
   width: 90%;
@@ -18,8 +18,8 @@
 }
 .newsletterBanner .emailIcon {
   position: absolute;
-  top: 17%;
-  left: 3%;
+  top: 15%;
+  left: 15px;
   z-index: 10;
 }
 
@@ -31,6 +31,7 @@
   right: 10%;
   /* left: 60%; */
   color: #fff;
+  width: 28%;
   height: 70%;
   font-size: 16px;
   text-transform: capitalize !important;

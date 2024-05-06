@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="container-fluid ">
           <div className="row position-relative">
             <div className="col-sm-3 part1 d-flex align-items-center">
-              <Button className="bg-g text-white catTab">
+              <Button className="bg-g text-white catTab Nav-Cat-Res-Hide">
                 <Link to={'/404'} style={{textDecoration:"none" , color:"white"}}>
                 <GridView />
                 &nbsp; Browes All Cateogories
