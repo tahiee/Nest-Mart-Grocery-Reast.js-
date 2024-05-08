@@ -51,8 +51,9 @@ const Navbar = (props) => {
                         <li className="list-inline-item" key={index}>
                           <Button>
                             <Link to={`/cat/${item.cat_name?.toLowerCase()}`}>
-                              {item.cat_name}
+                              {item.cat_name } 
                             </Link>
+                              <KeyboardArrowDown />
                           </Button>
 
                           {/* dropdown starts */}
@@ -232,7 +233,10 @@ const Navbar = (props) => {
                     </div>
                   </li>
                   {/* mega menu ends */}
-                  <li className="list-inline-item">
+
+                  {/* Blog start */}
+
+                  {/* <li className="list-inline-item">
                     <Button>
                       <Link>Blog</Link>
                       <KeyboardArrowDown />
@@ -246,7 +250,10 @@ const Navbar = (props) => {
                         </li>
                       </ul>
                     </div>
-                  </li>
+                  </li> */}
+
+                  {/* blog ends */}
+
                   <li className="list-inline-item">
                     <Button>
                       <Link>Pages</Link>
