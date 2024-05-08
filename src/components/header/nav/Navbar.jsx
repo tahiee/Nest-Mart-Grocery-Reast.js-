@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./nav.css";
 import { Button } from "@mui/material";
 import {
@@ -9,8 +9,12 @@ import {
 import { Link } from "react-router-dom";
 import MegaImgt from "../../../images/360_F_712724773_cFHfl8fvajfRJntpVHI2o4kI3ram9ZbE.jpg";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const [navData, setnavData] = useState([]);
+
   useEffect(() => {
+    console.log(props.data);
+    setnavData(props.data);
     window.scrollTo(0, 0);
   }, []);
   return (
@@ -20,10 +24,13 @@ const Navbar = () => {
           <div className="row position-relative">
             <div className="col-sm-3 part1 d-flex align-items-center">
               <Button className="bg-g text-white catTab Nav-Cat-Res-Hide">
-                <Link to={'/404'} style={{textDecoration:"none" , color:"white"}}>
-                <GridView />
-                &nbsp; Browes All Cateogories
-                <KeyboardArrowDown />
+                <Link
+                  to={"/404"}
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  <GridView />
+                  &nbsp; Browes All Cateogories
+                  <KeyboardArrowDown />
                 </Link>
               </Button>
             </div>
@@ -36,12 +43,57 @@ const Navbar = () => {
                       <Link to={"/"}>Home</Link>
                     </Button>
                   </li>
-                  <li className="list-inline-item">
+
+                  {/* Conductions of nav 3 elements groceries , electronic & fashion starts */}
+                  {navData.length !== 0 &&
+                    navData.map((item, index) => {
+                      return (
+                        <li className="list-inline-item" key={index}>
+                          <Button>
+                            <Link to={`/cat/${item.cat_name?.toLowerCase()}`}>
+                              {item.cat_name}
+                            </Link>
+                          </Button>
+
+                          {/* dropdown starts */}
+
+                          {item.items.length !== 0 && (
+                            <div className="dropDown_Menu">
+                              <ul>
+                                {item.items.map((item_, index_) => {
+                                  return (
+                                    <li key={index_}>
+                                      <Button>
+                                        <Link
+                                          to={`/cat/${item.cat_name?.toLowerCase()}/${item_.cat_name
+                                            .replace(/\s/g, "-")
+                                            .toLowerCase()}`}
+                                        >
+                                          {item_.cat_name}
+                                        </Link>
+                                      </Button>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          )}
+
+                          {/* dropdown ends */}
+                        </li>
+                      );
+                    })}
+
+                  {/* Conductions of nav 3 elements groceries , electronic & fashion ends */}
+
+                  {/* <li className="list-inline-item">
                     <Button>
                       <Link to={"/about"}>About</Link>
                     </Button>
-                  </li>
-                  <li className="list-inline-item">
+                  </li> */}
+
+                  {/* Vendor Li start */}
+                  {/* <li className="list-inline-item">
                     <Button>
                       <Link>Vendor</Link>
                       <KeyboardArrowDown />
@@ -59,54 +111,11 @@ const Navbar = () => {
                             <Link to={"/about"}>Contact</Link>
                           </Button>
                         </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>My Account</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Login</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Register</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Forget Passowrd</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Rest Password</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Privacy policy</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Purchase Guide</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Teams & Services</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>404 Pages</Link>
-                          </Button>
-                        </li>
                       </ul>
                     </div>
-                  </li>
+                  </li> */}
+                  {/* vendor li ends */}
+
                   <li className="list-inline-item">
                     <Button>
                       <Link>Shop</Link>
@@ -137,6 +146,9 @@ const Navbar = () => {
                       </ul>
                     </div>
                   </li>
+
+                  {/* Mega Menu */}
+
                   <li className="list-inline-item position-static">
                     <Button>
                       <Link>Mega Menu</Link>
@@ -219,6 +231,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   </li>
+                  {/* mega menu ends */}
                   <li className="list-inline-item">
                     <Button>
                       <Link>Blog</Link>

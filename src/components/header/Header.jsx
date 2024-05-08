@@ -25,7 +25,7 @@ import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 import Navbar from "./nav/Navbar";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
   const [windowWidth, setwindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -251,7 +251,7 @@ const Header = () => {
             </div>
           </div>
         </header>
-        <Navbar />
+        <Navbar data={props.data} />
       </div>
       <div className="afterHeader"></div>
     </>
