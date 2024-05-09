@@ -13,7 +13,7 @@ const Navbar = (props) => {
   const [navData, setnavData] = useState([]);
 
   useEffect(() => {
-    console.log(props.data);
+    // console.log(props.data);
     setnavData(props.data);
     window.scrollTo(0, 0);
   }, []);
@@ -191,7 +191,7 @@ const Navbar = (props) => {
                             );
                           })}
 
-                          {/* mega menu col 1 starts */}
+                        {/* mega menu col 1 starts */}
 
                         {/* <div className="col">
                           <h4 className="text-g">Fruites & Vegetabels</h4>
@@ -217,9 +217,8 @@ const Navbar = (props) => {
                           </ul>
                         </div> */}
 
-                          
-                          {/* mega menu col 1 ends */}
-                          {/* mega menu col 2 starts */}
+                        {/* mega menu col 1 ends */}
+                        {/* mega menu col 2 starts */}
 
                         {/* <div className="col">
                           <h4 className="text-g">Breakfast & Dairy</h4>
@@ -245,9 +244,8 @@ const Navbar = (props) => {
                           </ul>
                         </div> */}
 
-                        
-                          {/* mega menu col 2 ends */}
-                          {/* mega menu col 3 starts */}
+                        {/* mega menu col 2 ends */}
+                        {/* mega menu col 3 starts */}
 
                         {/* <div className="col">
                           <h4 className="text-g">Meat & Seafood</h4>
@@ -273,7 +271,7 @@ const Navbar = (props) => {
                           </ul>
                         </div> */}
 
-                          {/* mega menu col 3 ends */}
+                        {/* mega menu col 3 ends */}
 
                         <div className="col">
                           <img src={MegaImgt} className="mt-3 mb-0" />

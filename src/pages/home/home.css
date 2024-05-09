@@ -5,22 +5,24 @@
 .filterTab li a {
   text-decoration: none;
   color: rgb(0, 0, 0, 0.8);
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   transition: all 0.3s ease-in-out;
   position: relative;
 }
 .homeSection .container-fluid ul li {
   display: inline;
-  margin-left: 15px;
+  margin-left: 13px;
 }
 .homeSection .container-fluid ul {
   margin-left: auto;
 }
 
-.filterTab li a:hover {
+.filterTab li:hover a,
+.filterTab li a.act {
   top: -2px;
-  color: #3bb77e;
+  transform: translateY(-10px);
+  color: #3bb77e !important;
 }
 .filterTab {
   margin-bottom: 0px !important;

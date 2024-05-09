@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./product.css";
-import Product1 from "../../images/popular/product-1-1.jpg";
-import Product2 from "../../images/popular/product-2-1.jpg";
 import Rating from "@mui/material/Rating";
 import { Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -13,66 +11,93 @@ import {
 } from "@mui/icons-material";
 import Tooltip from "@mui/material/Tooltip";
 
-const Product = ({tag , buttonWidth}) => {
+const Product = (props) => {
+  const [productData, setproductData] = useState(props.item);
+
+  useEffect(() => {
+    // console.log({props})
+    setproductData(props.item);
+  }, [props.item]);
+
   return (
     <>
       <div className="productThumb">
-        <span className={`badge ${tag}`} >{tag}</span>
-        <div className="imgWrapper">
-          <img src={Product1} className="w-100" />
+        {productData?.tag && <span className={`badge ${productData.tag}`}>{productData.tag}</span>}
 
-          <div className="overLay tranisition">
-            <ul className="">
-              <li className="">
-                <Tooltip title="WishList" placement="top-start">
-                  <a className="cursor">
-                    <FavoriteBorderOutlined />
-                  </a>
-                </Tooltip>
-              </li>
-              <li className="">
-                <Tooltip title="Compare" placement="top">
-                  <a className="cursor">
-                    <CompareArrowsOutlined />
-                  </a>
-                </Tooltip>
-              </li>
-              <li className="">
-                <Tooltip title="Quick View" placement="top-end">
-                <Link to='/product/details' className="cursor" style={{ border: "none" }}>
-                  <RemoveRedEyeOutlined />
-                </Link>
-                </Tooltip>
-              </li>
-            </ul>
-          </div>
-        </div>
+        {productData !== undefined && (
+          <>
+            <Link>
+              <div className="imgWrapper">
+                <div className="p-4">
+                  <img
+                    src={productData.catImg + "?im=Resize=(420,420)"}
+                    className="w-100"
+                  />
+                </div>
+                <div className="overLay tranisition">
+                  <ul>
+                    <li>
+                      <Tooltip title="WishList" placement="top-start">
+                        <Link className="cursor">
+                          <FavoriteBorderOutlined />
+                        </Link>
+                      </Tooltip>
+                    </li>
+                    <li>
+                      <Tooltip title="Compare" placement="top">
+                        <Link className="cursor">
+                          <CompareArrowsOutlined />
+                        </Link>
+                      </Tooltip>
+                    </li>
+                    <li>
+                      <Tooltip title="Quick View" placement="top-end">
+                        <Link
+                          to="/product/details"
+                          className="cursor"
+                          style={{ border: "none" }}
+                        >
+                          <RemoveRedEyeOutlined />
+                        </Link>
+                      </Tooltip>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Link>
 
-        <div className="info">
-          <span className="d-block CatName">Snack</span>
-          <h4 className="title">
-            <Link>Seeds of Change Organic Quinoa, Brown, & Red Rice</Link>
-          </h4>
-          <Rating
-            name="half-rating-read"
-            defaultValue={3.5}
-            precision={0.5}
-            readOnly
-          />
-          <span className="brand d-block text-g">
-            By <Link className="text-g">NestFoods</Link>
-          </span>
-          <div className="d-flex align-items-center">
-            <div className="d-flex align-items-center">
-              <span className="price text-g" style={{fontWeight:'800'}}>$28.33</span>
-              <span className="oldPrice">$33.33</span>
+            <div className="info">
+              <span className="d-block CatName">{productData.brand}</span>
+              <h4 className="title">
+                <Link>{productData.productName}</Link>
+              </h4>
+              <Rating
+                name="half-rating-read"
+                defaultValue={productData.rating}
+                precision={0.5}
+                readOnly
+              />
+              <span className="brand d-block text-g">
+                By <Link className="text-g">{productData.brand}</Link>
+              </span>
+              <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center">
+                  <span className="price text-g" style={{ fontWeight: "800" }}>
+                    Rs: {productData.price}
+                  </span>
+                  <span className="oldPrice">Rs: {productData.oldPrice}</span>
+                </div>
+                <Button
+                  className="bg-g brand-Button "
+                  style={{ width: props.buttonWidth }}
+                >
+                  <AddShoppingCartIcon className="addshopicon" />
+                  Add
+                </Button>
+              </div>
             </div>
-            <Button className="bg-g brand-Button " style={{ width: buttonWidth }}>
-              <AddShoppingCartIcon className="addshopicon" />
-              Add
-            </Button>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </>
   );

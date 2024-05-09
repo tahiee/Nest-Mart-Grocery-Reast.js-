@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeSlider from "./slideer/Slider";
 import "./home.css";
 import CatSlider from "../../components/catSlider/CatSlider";
@@ -8,12 +8,18 @@ import PopularBanner from "../../images/banner4.jpg";
 import Slider from "react-slick";
 import sliderimg1 from "../../images/popular/product-8-1.jpg";
 import TopProducts from "./topProducts/TopProducts";
-import img1 from '../../images/thumbnail-1.jpg'
-import img2 from '../../images/thumbnail-2.jpg'
-import img3 from '../../images/thumbnail-3.jpg'
+import img1 from "../../images/thumbnail-1.jpg";
+import img2 from "../../images/thumbnail-2.jpg";
+import img3 from "../../images/thumbnail-3.jpg";
+import { Link } from "react-router-dom";
 
+const Home = (props) => {
+  const [prodData, setProdData] = useState(props.data);
+  const [catArray, setcatArray] = useState([]);
+  const [activeTabs, setActiveTabs] = useState();
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [activeData, setActiveData] = useState([]);
 
-const Home = () => {
   var settings = {
     dots: false,
     infinite: true,
@@ -26,72 +32,92 @@ const Home = () => {
     autoplaySpeed: 2000,
     centerMode: true,
   };
+
+  const catArr = [];
+
+  useEffect(() => {
+    prodData.length !== 0 &&
+      prodData.map((item) => {
+        item.items.length !== 0 &&
+          item.items.map((item_) => {
+            catArr.push(item_.cat_name);
+          });
+      });
+    const list2 = catArr.filter(
+      (item, index) => catArr.indexOf(item) === index
+    );
+    setcatArray(list2);
+    setActiveTabs(list2[0]);
+  }, []);
+
+  useEffect(() => {
+    if (activeTabs && prodData.length !== 0) {
+      const newData = prodData.flatMap((item) => {
+        return item.items
+          .filter((item_) => item_.cat_name === activeTabs)
+          .flatMap((item_) => item_.products);
+      });
+      setActiveData(newData);
+    } else {
+      setActiveData([]);
+    }
+  }, [activeTabs, prodData]);
+
+  // useEffect(() => {
+  //   var arr = [];
+  //   setActiveData(arr);
+  //   prodData.length !== 0 &&
+  //     prodData.map((item, index) => {
+  //       item.items.map((item_, index_) => {
+  //         if (item.cat_name === activeTabs) {
+  //           setActiveData(item_.products);
+  //         }
+  //       });
+  //     });
+  // }, [activeTabs, activeData]);
+
   return (
     <>
       <HomeSlider />
-      <CatSlider />
+      <CatSlider data={prodData} />
       <Banner />
 
       <section className="homeSection">
         <div className="container-fluid">
           <div className="d-flex align-items-center">
-            <h2 className="hd mb-0 mt-0">Popula Products</h2>
+            <h2 className="hd mb-0 mt-0">Popular Products</h2>
             <ul className="list list-inline filterTab">
-              <li className="list-inline-item">
-                <a className="cursor">All</a>
-              </li>
-              <li className="list list-item">
-                <a className="cursor">Milk & Daries</a>
-              </li>
-              <li className="list list-item">
-                <a className="cursor">Pet Foods</a>
-              </li>
-              <li className="list list-item">
-                <a className="cursor">Meats</a>
-              </li>
-              <li className="list list-item">
-                <a className="cursor">Vegatables</a>
-              </li>
-              <li className="list list-item">
-                <a className="cursor">Cofees & Tea</a>
-              </li>
-              <li className="list list-item">
-                <a className="cursor">Fruits</a>
-              </li>
+              {catArray.length !== 0 &&
+                catArray.map((item, index) => {
+                  
+                  return (
+                    <li className="list list-inline-item" key={index}>
+                      <Link
+                        className={`cursor text-capitalize ${
+                          activeTabIndex === index && "act"
+                        }`}
+                        onClick={() => {
+                          setActiveTabIndex(index);
+                          setActiveTabs(item);
+                        }}
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
 
           <div className="row product-row">
-            <div className="item">
-              <Product tag="hot" />
-            </div>
-            <div className="item">
-              <Product tag="new" />
-            </div>
-            <div className="item">
-              <Product tag="best" />
-            </div>
-            <div className="item">
-              <Product tag="null" />
-            </div>
-            <div className="item">
-              <Product tag="sale" />
-            </div>
-            <div className="item">
-              <Product tag="null" />
-            </div>
-            <div className="item">
-              <Product tag="best" />
-            </div>
-            <div className="item">
-              <Product tag="null" />
-            </div>
-            <div className="item">
-              <Product tag="null" />
-            </div>
-            <div className="item">
-              <Product tag="new" />
-            </div>
+            {activeData.length !== 0 &&
+              activeData.map((item, index) => {
+                return (
+                  <div className="item" key={index}>
+                    <Product tag={item.type} item={item} />
+                  </div>
+                );
+              })}
           </div>
         </div>
       </section>
@@ -150,24 +176,23 @@ const Home = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col">
-              <TopProducts title="Top Selling" img={img1}/>
+              <TopProducts title="Top Selling" img={img1} />
             </div>
 
             <div className="col">
-              <TopProducts title="Trending Products" img={img2}/>
+              <TopProducts title="Trending Products" img={img2} />
             </div>
 
             <div className="col">
-              <TopProducts title="Recently Added" img={img1}/>
+              <TopProducts title="Recently Added" img={img1} />
             </div>
 
             <div className="col">
-              <TopProducts title="Top Rated"img={img3}/>
+              <TopProducts title="Top Rated" img={img3} />
             </div>
           </div>
         </div>
       </section>
-      
     </>
   );
 };

@@ -20,25 +20,35 @@ const RouterConfig = () => {
     try {
       await axios.get(url).then((res) => {
         // console.log(res.data);
-        setProductData(res.data)
+        setProductData(res.data);
       });
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    productData.length !==0 &&
-    <BrowserRouter>
-      <Header data={productData}/>
-      <Routes>
-        <Route exact={true} path="/" element={<Home />} />
-        <Route exact={true} path="/cat/:id" element={<Listing />} />
-        <Route exact={true} path="/about" element={<About />} />
-        <Route exact={true} path="/product/details" element={<Details />} />
-        <Route exact={true} path="/404" element={<NotFount />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    productData.length !== 0 && (
+      <BrowserRouter>
+        <Header data={productData} />
+        <Routes>
+          <Route exact={true} path="/" element={<Home  data={productData}/>} />
+          <Route
+            exact={true}
+            path="/cat/:id"
+            element={<Listing data={productData} single={true} />}
+          />
+          <Route
+            exact={true}
+            path="/cat/:id/:id"
+            element={<Listing data={productData} single={false} />}
+          />
+          <Route exact={true} path="/about" element={<About />} />
+          <Route exact={true} path="/product/details" element={<Details />} />
+          <Route exact={true} path="/404" element={<NotFount />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    )
   );
 };
 

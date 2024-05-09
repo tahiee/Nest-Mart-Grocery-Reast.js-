@@ -9,6 +9,21 @@
   cursor: pointer;
   position: relative;
 }
+.productThumb .badge.hot {
+  background: #f74b81 !important;
+}
+
+.productThumb .badge.sale {
+  background: #67bcee !important;
+}
+
+.productThumb .badge.new {
+  background: #3bb77e !important;
+}
+
+.productThumb .badge.best {
+  background: #f59758 !important;
+}
 .productThumb:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -36,7 +51,7 @@
 }
 .productThumb .title a {
   color: #000;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   text-decoration: none;
   line-height: 25px;
@@ -67,18 +82,6 @@
 .productThumb button:hover {
   background: #3bb77e !important;
   color: white;
-}
-.productThumb .badge.hot {
-  background: #f74b81 !important;
-}
-.productThumb .badge.new {
-  background: #67bcee !important;
-}
-.productThumb .badge.best {
-  background: #38877e !important;
-}
-.productThumb .badge.sale {
-  background: #f59758 !important;
 }
 .productThumb .badge.null {
   display: none;
@@ -156,7 +159,7 @@
 .css-ja5taz-MuiTooltip-tooltip {
   background: #3bb77e !important;
 }
-.css-1spb1s5{
+.css-1spb1s5 {
   background: #3bb77e !important;
 }
 .MuiTooltip-popper[data-popper-placement*="top"]
