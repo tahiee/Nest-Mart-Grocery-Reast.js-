@@ -51,9 +51,9 @@ const Navbar = (props) => {
                         <li className="list-inline-item" key={index}>
                           <Button>
                             <Link to={`/cat/${item.cat_name?.toLowerCase()}`}>
-                              {item.cat_name } 
+                              {item.cat_name}
                             </Link>
-                              <KeyboardArrowDown />
+                            <KeyboardArrowDown />
                           </Button>
 
                           {/* dropdown starts */}
@@ -131,12 +131,12 @@ const Navbar = (props) => {
                         </li>
                         <li>
                           <Button>
-                            <Link to={"/details"}>Product Details</Link>
+                            <Link to={"/product/details"}>Product Details</Link>
                           </Button>
                         </li>
                         <li>
                           <Button>
-                            <Link to={"/listing"}>Listing</Link>
+                            <Link to={"/cat/:id"}>Listing</Link>
                           </Button>
                         </li>
                         <li>
@@ -148,7 +148,7 @@ const Navbar = (props) => {
                     </div>
                   </li>
 
-                  {/* Mega Menu */}
+                  {/* Mega Menu starts */}
 
                   <li className="list-inline-item position-static">
                     <Button>
@@ -157,7 +157,43 @@ const Navbar = (props) => {
                     </Button>
                     <div className="dropDown_Menu megaMenu w-100">
                       <div className="row">
-                        <div className="col">
+                        {props.data.length !== 0 &&
+                          props.data.map((item, index) => {
+                            // console.log(item,'this is my nav props.data');
+                            return (
+                              <div className="col">
+                                <Link
+                                  to={`/cat/${item.cat_name.toLowerCase()}`}
+                                  style={{ textDecoration: "none" }}
+                                >
+                                  <h4 className="text-g text-capitalize">
+                                    {item.cat_name}
+                                  </h4>
+                                </Link>
+                                {item.items.length !== 0 && (
+                                  <ul className="mt-4 mb-0">
+                                    {item.items.map((item_, index) => {
+                                      return (
+                                        <li>
+                                          <Link
+                                            to={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
+                                              .replace(/\s/g, "-")
+                                              .toLowerCase()}`}
+                                          >
+                                            {item_.cat_name}
+                                          </Link>
+                                        </li>
+                                      );
+                                    })}
+                                  </ul>
+                                )}
+                              </div>
+                            );
+                          })}
+
+                          {/* mega menu col 1 starts */}
+
+                        {/* <div className="col">
                           <h4 className="text-g">Fruites & Vegetabels</h4>
                           <ul className="mt-3 mb-0">
                             <li>
@@ -179,8 +215,13 @@ const Navbar = (props) => {
                               <Link to="">Packges & Products</Link>
                             </li>
                           </ul>
-                        </div>
-                        <div className="col">
+                        </div> */}
+
+                          
+                          {/* mega menu col 1 ends */}
+                          {/* mega menu col 2 starts */}
+
+                        {/* <div className="col">
                           <h4 className="text-g">Breakfast & Dairy</h4>
                           <ul className="mt-3 mb-0">
                             <li>
@@ -202,8 +243,13 @@ const Navbar = (props) => {
                               <Link to="">Packges & Products</Link>
                             </li>
                           </ul>
-                        </div>
-                        <div className="col">
+                        </div> */}
+
+                        
+                          {/* mega menu col 2 ends */}
+                          {/* mega menu col 3 starts */}
+
+                        {/* <div className="col">
                           <h4 className="text-g">Meat & Seafood</h4>
                           <ul className="mt-3 mb-0">
                             <li>
@@ -225,7 +271,10 @@ const Navbar = (props) => {
                               <Link to="">Packges & Products</Link>
                             </li>
                           </ul>
-                        </div>
+                        </div> */}
+
+                          {/* mega menu col 3 ends */}
+
                         <div className="col">
                           <img src={MegaImgt} className="mt-3 mb-0" />
                         </div>

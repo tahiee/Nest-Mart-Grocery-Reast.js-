@@ -8,12 +8,14 @@ import { Button } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const Listing = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   const buttonWidth = "60px";
   const [openDropDown, setOpenDropDown] = useState(false);
   const [openDropDown2, setOpenDropDown2] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <>
       <div className="listingPage">

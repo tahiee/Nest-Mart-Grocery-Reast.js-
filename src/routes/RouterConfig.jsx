@@ -34,7 +34,7 @@ const RouterConfig = () => {
         <Route exact={true} path="/" element={<Home />} />
         <Route exact={true} path="/cat/:id" element={<Listing />} />
         <Route exact={true} path="/about" element={<About />} />
-        <Route exact={true} path="/details" element={<Details />} />
+        <Route exact={true} path="/product/details" element={<Details />} />
         <Route exact={true} path="/404" element={<NotFount />} />
       </Routes>
       <Footer />

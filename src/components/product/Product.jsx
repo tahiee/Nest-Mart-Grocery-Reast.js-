@@ -39,7 +39,7 @@ const Product = ({tag , buttonWidth}) => {
               </li>
               <li className="">
                 <Tooltip title="Quick View" placement="top-end">
-                <Link to='/listing' className="cursor" style={{ border: "none" }}>
+                <Link to='/product/details' className="cursor" style={{ border: "none" }}>
                   <RemoveRedEyeOutlined />
                 </Link>
                 </Tooltip>
