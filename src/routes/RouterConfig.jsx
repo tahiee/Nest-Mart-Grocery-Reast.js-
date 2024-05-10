@@ -7,25 +7,26 @@ import Footer from "../components/footer/Footer";
 import About from "../pages/about/About";
 import NotFount from "../components/notFound/NotFount";
 import Details from "../pages/details/Details";
+import dbJson from '../../db.json';
 import axios from "axios";
 
 const RouterConfig = () => {
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
-    getData("http://localhost:3000/productData");
+    // getData("http://localhost:3000/productData");
+    setProductData(dbJson.productData);
   }, []);
-
-  const getData = async (url) => {
-    try {
-      await axios.get(url).then((res) => {
-        // console.log(res.data);
-        setProductData(res.data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
+  // const getData = async (url) => {
+  //   try {
+  //     await axios.get(url).then((res) => {
+  //       setProductData(res.data);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     productData.length !== 0 && (
       <BrowserRouter>
