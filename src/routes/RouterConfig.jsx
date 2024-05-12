@@ -20,7 +20,7 @@ const RouterConfig = () => {
   
   // const getData = async (url) => {
   //   try {
-  //     await axios.get(url).then((res) => {
+  //     await axios.get(url).then((res) => { 
   //       setProductData(res.data);
   //     });
   //   } catch (error) {
