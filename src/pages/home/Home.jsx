@@ -20,6 +20,8 @@ const Home = (props) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [activeData, setActiveData] = useState([]);
 
+  const [getBestSeller, setgetbestseller] = useState([]);
+
   var settings = {
     dots: false,
     infinite: true,
@@ -63,18 +65,24 @@ const Home = (props) => {
     }
   }, [activeTabs, prodData]);
 
-  // useEffect(() => {
-  //   var arr = [];
-  //   setActiveData(arr);
-  //   prodData.length !== 0 &&
-  //     prodData.map((item, index) => {
-  //       item.items.map((item_, index_) => {
-  //         if (item.cat_name === activeTabs) {
-  //           setActiveData(item_.products);
-  //         }
-  //       });
-  //     });
-  // }, [activeTabs, activeData]);
+  const bestSellerArray = [];
+  useEffect(() => {
+    {
+      prodData.length !== 0 &&
+        prodData.map((item) => {
+          if (item.cat_name === "Fashion") {
+            item.items.length !== 0 &&
+              item.items.map((item_) => {
+                item_.produts !== 0 &&
+                  item_.products.map((productItem, Index) => {
+                    bestSellerArray.push(productItem);
+                  });
+              });
+          }
+        });
+    }
+    setgetbestseller(bestSellerArray);
+  }, []);
 
   return (
     <>
@@ -89,7 +97,6 @@ const Home = (props) => {
             <ul className="list list-inline filterTab">
               {catArray.length !== 0 &&
                 catArray.map((item, index) => {
-                  
                   return (
                     <li className="list list-inline-item" key={index}>
                       <Link
@@ -148,10 +155,16 @@ const Home = (props) => {
 
             <div className="col-md-9 p-0">
               <Slider {...settings} className="productSlider">
-                <div className="item">
-                  <Product tag="new" />
-                </div>
-                <div className="item">
+                {getBestSeller.length !== 0 &&
+                  getBestSeller.map((item, index) => {
+                    return (
+                      <div className="item" key={index}>
+                        <Product tag={item.type} item={item} />
+                      </div>
+                    );
+                  })}
+
+                {/* <div className="item">
                   <Product tag="hot" />
                 </div>
                 <div className="item">
@@ -165,7 +178,7 @@ const Home = (props) => {
                 </div>
                 <div className="item">
                   <Product tag="hot" />
-                </div>
+                </div> */}
               </Slider>
             </div>
           </div>
