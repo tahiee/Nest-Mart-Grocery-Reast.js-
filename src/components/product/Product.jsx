@@ -69,7 +69,7 @@ const Product = (props) => {
             <div className="info">
               <span className="d-block CatName">{productData.brand}</span>
               <h4 className="title">
-                <Link>{productData.productName}</Link>
+                <Link>{productData.productName.substr(0,30)+'...'}  </Link>
               </h4>
               <Rating
                 name="half-rating-read"

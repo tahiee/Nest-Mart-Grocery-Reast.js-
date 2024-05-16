@@ -35,8 +35,8 @@ const Home = (props) => {
     centerMode: true,
   };
 
+  
   const catArr = [];
-
   useEffect(() => {
     prodData.length !== 0 &&
       prodData.map((item) => {
@@ -65,12 +65,14 @@ const Home = (props) => {
     }
   }, [activeTabs, prodData]);
 
+
+  // fetch best seller data from db.json
   const bestSellerArray = [];
   useEffect(() => {
     {
       prodData.length !== 0 &&
         prodData.map((item) => {
-          if (item.cat_name === "Fashion") {
+          if (item.cat_name === "Electronics") {
             item.items.length !== 0 &&
               item.items.map((item_) => {
                 item_.produts !== 0 &&
@@ -155,30 +157,16 @@ const Home = (props) => {
 
             <div className="col-md-9 p-0">
               <Slider {...settings} className="productSlider">
-                {getBestSeller.length !== 0 &&
-                  getBestSeller.map((item, index) => {
-                    return (
-                      <div className="item" key={index}>
-                        <Product tag={item.type} item={item} />
+                {
+                  getBestSeller.length!==0 &&
+                  getBestSeller.map((item,index)=>{
+                      return(
+                        <div className="item" key={index}>
+                    <Product tag={item.type} item={item} />
                       </div>
-                    );
-                  })}
-
-                {/* <div className="item">
-                  <Product tag="hot" />
-                </div>
-                <div className="item">
-                  <Product tag="sale" />
-                </div>
-                <div className="item">
-                  <Product tag="best" />
-                </div>
-                <div className="item">
-                  <Product tag="null" />
-                </div>
-                <div className="item">
-                  <Product tag="hot" />
-                </div> */}
+                      )
+                  })
+                }
               </Slider>
             </div>
           </div>

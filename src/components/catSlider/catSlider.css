@@ -58,3 +58,10 @@
   /* top: -5px; */
   transform: scale(1.1);
 }
+.slick-track{
+  margin-left: 0px !important;
+}
+.item a{
+  text-decoration: none;
+  color: black;
+}

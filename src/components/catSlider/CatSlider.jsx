@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "./catSlider.css";
 import itme1 from "../../images/category/cat-1.png";
@@ -12,8 +12,11 @@ import itme8 from "../../images/category/cat-3.png";
 import itme9 from "../../images/category/cat-4.png";
 import itme10 from "../../images/category/cat-5.png";
 import itme11 from "../../images/category/cat-9.png";
+import { Link } from "react-router-dom";
 
-const CatSlider = () => {
+const CatSlider = (props) => {
+  const [allData, setAllData] = useState(props.data);
+  const [totalLength , setTotalLength] = useState([])
   const [itemsbg, setItembg] = useState([
     "#ffeceb",
     "#ecffec",
@@ -27,12 +30,11 @@ const CatSlider = () => {
     "#feefea",
     "#fff3eb",
     "#fff3ff",
-    
   ]);
 
   var settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 10,
     slidesToScroll: 1,
@@ -40,26 +42,58 @@ const CatSlider = () => {
     arrows: true,
     autoplay: true,
     autoplaySpeed: 2000,
-
+    // centerMode:true,
   };
+
+  var catLength = 0;
+  var lengthArray = [];
+  useEffect(() => {
+    allData.length !== 0 &&
+      allData.map((item, index) => {
+        item.items.length !== 0 &&
+          item.items.map((item_) => {
+            catLength += item_.products.length;
+          });
+        lengthArray.push(catLength);
+        catLength = 0;
+      });
+      const list = lengthArray.filter((item,index)=>lengthArray.indexOf(item)=== index )
+      setTotalLength(list)
+  }, []);
+
   return (
     <>
       <div className="catSliderSection">
         <div className="container-fluid">
           <h2 className="hd">Featured Categories</h2>
           <Slider {...settings} className="cat_Slider_Main">
-            {itemsbg.length !== 0 &&
+            {allData.length !== 0 &&
+              allData.map((item, index) => {
+                // console.log(item);
+                return (
+                  <div className="item" key={index} >
+                    <Link to={`/cat/${item.cat_name?.toLowerCase()}`}>
+                    <div className="info" style={{background:itemsbg[index]}}>
+                      <img src={item.image} style={{ width: "80px" }} />
+                      <h5 className="text-capitalize">{item.cat_name}</h5>
+                      <p>{totalLength[index]}</p>
+                    </div>
+                    </Link>
+                  </div>
+                );
+              })}
+            {/* {itemsbg.length !== 0 &&
               itemsbg.map((item, index) => {
                 return (
                   <div className="item" key={index}>
-                    <div className="info" style={{background:item}}>
-                      <img src={itme1} alt={`Cat ${index + 1}`}/>
+                    <div className="info" style={{ background: item }}>
+                      <img src={itme1} alt={`Cat ${index + 1}`} />
                       <h5>Vegetables</h5>
                       <p>6 Items</p>
                     </div>
                   </div>
                 );
-              })}
+              })} */}
 
             {/* <div className="item">
               <div className="info">
