@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
@@ -18,6 +18,9 @@ import CompareArrowsRoundedIcon from "@mui/icons-material/CompareArrowsRounded";
 
 import SideBar from "../../components/sidebar/SideBar";
 const Details = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   var settings = {
     dots: false,
     infinite: false,
