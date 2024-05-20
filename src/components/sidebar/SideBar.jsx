@@ -15,10 +15,13 @@ const SideBar = (props) => {
   function valuetext(value) {
     return `${value}°C`;
   }
-  const [value, setValue] = React.useState([10, 500]);
+  const [value, setValue] = React.useState([200, 8000]);
+
   const handleChange = (event, newValue) => {
+    props.filterByPrice(minValue[0], maxValue[1]);
     setValue(newValue);
   };
+
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const [totalLength, setTotalLength] = useState([]);
@@ -40,6 +43,7 @@ const SideBar = (props) => {
     );
     setTotalLength(list2);
   }, []);
+
   return (
     <>
       <div className="SideBar">
@@ -82,92 +86,6 @@ const SideBar = (props) => {
                   </Link>
                 );
               })}
-
-            {/* <div className="cardItem d-flex align-items-center mt-0">
-              <span className="cardImg">
-                <img src={img1} width={30} />
-              </span>
-              <h4
-                className="mb-0 ml-3 mr-3"
-                style={{ marginLeft: "10px", marginRight: "10px" }}
-              >
-                Milk & Daries
-              </h4>
-              <span
-                className="d-flex align-items-center rounded-circle ml-auto"
-                style={{ marginLeft: "auto" }}
-              >
-                7
-              </span>
-            </div>
-            <div className="cardItem d-flex align-items-center">
-              <span className="cardImg">
-                <img src={img2} width={30} />
-              </span>
-              <h4
-                className="mb-0 ml-3 mr-3"
-                style={{ marginLeft: "10px", marginRight: "10px" }}
-              >
-                Clothing
-              </h4>
-              <span
-                className="d-flex align-items-center rounded-circle ml-auto"
-                style={{ marginLeft: "auto" }}
-              >
-                12
-              </span>
-            </div>
-            <div className="cardItem d-flex align-items-center">
-              <span className="cardImg">
-                <img src={img3} width={30} />
-              </span>
-              <h4
-                className="mb-0 ml-3 mr-3"
-                style={{ marginLeft: "10px", marginRight: "10px" }}
-              >
-                Pet Foods
-              </h4>
-              <span
-                className="d-flex align-items-center rounded-circle ml-auto"
-                style={{ marginLeft: "auto" }}
-              >
-                1
-              </span>
-            </div>
-            <div className="cardItem d-flex align-items-center">
-              <span className="cardImg">
-                <img src={img4} width={30} />
-              </span>
-              <h4
-                className="mb-0 ml-3 mr-3"
-                style={{ marginLeft: "10px", marginRight: "10px" }}
-              >
-                Baking Material
-              </h4>
-              <span
-                className="d-flex align-items-center rounded-circle ml-auto"
-                style={{ marginLeft: "auto" }}
-              >
-                16
-              </span>
-            </div>
-            <div className="cardItem d-flex align-items-center">
-              <span className="cardImg">
-                <img src={img5} width={30} />
-              </span>
-              <h4
-                className="mb-0 ml-3 mr-3"
-                style={{ marginLeft: "10px", marginRight: "10px" }}
-              >
-                Fresh Fruits
-              </h4>
-              <span
-                className="d-flex align-items-center rounded-circle ml-auto"
-                style={{ marginLeft: "auto" }}
-              >
-                0
-              </span>
-            </div> */}
           </div>
         </div>
 
@@ -177,7 +95,7 @@ const SideBar = (props) => {
           <Slider
             min={1}
             step={1}
-            max={1000}
+            max={10000}
             getAriaLabel={() => "Temperature range"}
             value={value}
             onChange={handleChange}
@@ -187,10 +105,10 @@ const SideBar = (props) => {
           />
           <div className="d-flex pt-2 pb-2 RangePrice">
             <span>
-              From: <strong className="text-success">${value[0]}</strong>
+              From: <strong className="text-success">Rs: {value[0]}</strong>
             </span>
             <span className="RangePriceSpanMargin">
-              To: <strong className="text-success">${value[1]}</strong>
+              To: <strong className="text-success">Rs: {value[1]}</strong>
             </span>
           </div>
 

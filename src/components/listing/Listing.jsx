@@ -40,9 +40,9 @@ const Listing = (props) => {
                 id.toLowerCase()
               )
                 item_.products.length !== 0 &&
-                item_.products.map((product)=>{
-                  itemsData.push(product)
-                })
+                  item_.products.map((product) => {
+                    itemsData.push(product);
+                  });
             });
         }
       });
@@ -53,49 +53,61 @@ const Listing = (props) => {
     console.log(list);
   }, [id, props.data, props.single]);
 
+  const filterByPrice = (minValue, maxValue) => {
+    
+  };
   return (
     <>
       <div className="listingPage">
         <div className="container-fluid">
           <div className="breadCrumb">
-            <h1>Snack</h1>
+            <h1 style={{ textTransform: "capitalize" }}>
+              {sessionStorage.getItem("cat")}
+            </h1>
             <ul className="list list-inline">
               <li className="list-inline-item">
                 <Link to={"/"}>
                   <HouseOutlined /> Home{" "}
                 </Link>
               </li>
-              
+
               <li className="list-inline-item">
-                <Link to={`/${sessionStorage.getItem('cat')}`} style={{textTransform:'capitalize'}}>
-                  <ArrowForwardIosIcon style={{ fontSize: "18px" }} /> {sessionStorage.getItem('cat')}
+                <Link
+                  to={`/cat/${sessionStorage.getItem("cat")}`}
+                  style={{ textTransform: "capitalize" }}
+                >
+                  <ArrowForwardIosIcon style={{ fontSize: "18px" }} />{" "}
+                  {sessionStorage.getItem("cat")}
                 </Link>
               </li>
-              
-              {
-                props.single === false &&
-              <li className="list-inline-item">
-                <Link to={`/${id}`} style={{textTransform:'capitalize'}}>
-                  <ArrowForwardIosIcon style={{ fontSize: "18px" }} /> {id}
-                </Link>
-              </li>
-              }
+
+              {props.single === false && (
+                <li className="list-inline-item">
+                  <Link style={{ textTransform: "capitalize" }}>
+                    <ArrowForwardIosIcon style={{ fontSize: "18px" }} /> {id}
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
 
           <div className="listingData">
             <div className="row">
               <div className="col-md-3 sideBarWrapper">
-                {
-                  data.length !==0 && <SideBar data={props.data} currentCatData={data} />
-                }
+                {data.length !== 0 && (
+                  <SideBar
+                    data={props.data}
+                    currentCatData={data}
+                    filterByPrice={filterByPrice}
+                  />
+                )}
               </div>
 
               <div className="col-md-9 rightContent homeSection">
                 <div className="topStrip d-flex align-items-center">
                   <p className="mb-0 mt-0">
-                    We found <span className="text-success">{data.length}</span>items for
-                    you!
+                    We found <span className="text-success">{data.length}</span>
+                    items for you!
                   </p>
 
                   <div className="d-flex align-items-center MarginAuto">

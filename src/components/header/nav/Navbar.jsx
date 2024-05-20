@@ -77,6 +77,12 @@ const Navbar = (props) => {
                                           to={`/cat/${item.cat_name?.toLowerCase()}/${item_.cat_name
                                             .replace(/\s/g, "-")
                                             .toLowerCase()}`}
+                                            onClick={() =>
+                                              sessionStorage.setItem(
+                                                "cat",
+                                                item.cat_name.toLowerCase()
+                                              )
+                                            }
                                         >
                                           {item_.cat_name}
                                         </Link>
@@ -140,11 +146,6 @@ const Navbar = (props) => {
                         <li>
                           <Button>
                             <Link to={"/product/details"}>Product Details</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/cat/:id"}>Listing</Link>
                           </Button>
                         </li>
                         <li>
