@@ -80,21 +80,21 @@ const Product = (props) => {
               <span className="brand d-block text-g">
                 By <Link className="text-g">{productData.brand}</Link>
               </span>
-              <div className="d-flex align-items-center">
-                <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center ">
+                <div className="d-flex align-items-center w-100">
                   <span className="price text-g" style={{ fontWeight: "800" }}>
                     Rs: {productData.price}
                   </span>
-                  <span className="oldPrice">Rs: {productData.oldPrice}</span>
+                  <span className="oldPrice" style={{marginLeft:"auto"}}>Rs: {productData.oldPrice}</span>
                 </div>
+              </div>
                 <Button
-                  className="bg-g brand-Button "
+                  className="w-100 bg-g brand-Button mt-3"
                   style={{ width: props.buttonWidth }}
                 >
                   <AddShoppingCartIcon className="addshopicon" />
                   Add
                 </Button>
-              </div>
             </div>
           </>
         )}

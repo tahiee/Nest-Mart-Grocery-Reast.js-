@@ -50,7 +50,15 @@ const Navbar = (props) => {
                       return (
                         <li className="list-inline-item" key={index}>
                           <Button>
-                            <Link to={`/cat/${item.cat_name?.toLowerCase()}`}>
+                            <Link
+                              to={`/cat/${item.cat_name?.toLowerCase()}`}
+                              onClick={() =>
+                                sessionStorage.setItem(
+                                  "cat",
+                                  item.cat_name.toLowerCase()
+                                )
+                              }
+                            >
                               {item.cat_name}
                             </Link>
                             <KeyboardArrowDown />
