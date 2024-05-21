@@ -1,191 +1,206 @@
 import React, { useEffect, useState } from "react";
-import img1 from "../../images/all-in/fruits.png";
-import img2 from "../../images/all-in/clothing.png";
 import img3 from "../../images/all-in/wines.png";
-import img4 from "../../images/all-in/backing.png";
-import img5 from "../../images/all-in/fruits.png";
 import BannerImg from "../../images/banner4.jpg";
-import Slider from "@mui/material/Slider";
-import Checkbox from "@mui/material/Checkbox";
+import RangeSlider from "react-range-slider-input";
+import "react-range-slider-input/dist/style.css";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import { Button } from "react-bootstrap";
 import { FilterAltOutlined } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Radio } from "@mui/material";
 
 const SideBar = (props) => {
-  function valuetext(value) {
-    return `${value}°C`;
-  }
-  const [value, setValue] = React.useState([200, 8000]);
-
-  const handleChange = (event, newValue) => {
-    props.filterByPrice(minValue[0], maxValue[1]);
-    setValue(newValue);
-  };
-
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
+  const [value, setValue] = useState([10, 60000]);
+  const [value2, setValue2] = useState(0);
+  const [brandFilters, setBrandFilters] = useState([]);
+  const [ratingsArr, setRatings] = useState([]);
   const [totalLength, setTotalLength] = useState([]);
 
-  var catLength = 0;
-  var lengthArray = [];
+  let { id } = useParams();
+
   useEffect(() => {
-    props.data.length !== 0 &&
-      props.data.map((item, index) => {
-        item.items.length !== 0 &&
-          item.items.map((item_) => {
+    if (props.data.length !== 0) {
+      const lengthArr = props.data.map((item) => {
+        let catLength = 0;
+        if (item.items.length !== 0) {
+          item.items.forEach((item_) => {
             catLength += item_.products.length;
           });
-        lengthArray.push(catLength);
-        catLength = 0;
+        }
+        return catLength;
       });
-    const list2 = lengthArray.filter(
-      (item, index) => lengthArray.indexOf(item) === index
-    );
-    setTotalLength(list2);
-  }, []);
+
+      const uniqueLengths = Array.from(new Set(lengthArr));
+      setTotalLength(uniqueLengths);
+    }
+  }, [props.data]);
+
+  useEffect(() => {
+    if (props.currentCatData.length !== 0) {
+      const brands = props.currentCatData.map((item) => item.brand);
+      const ratings = props.currentCatData.map((item) =>
+        parseFloat(item.rating)
+      );
+
+      const uniqueBrands = Array.from(new Set(brands));
+      const uniqueRatings = Array.from(new Set(ratings));
+
+      setBrandFilters(uniqueBrands);
+      setRatings(uniqueRatings);
+    }
+  }, [props.currentCatData, id]);
+
+  useEffect(() => {
+    if (props.currentCatData.length !== 0) {
+      const maxPrice = Math.max(
+        ...props.currentCatData.map((item) =>
+          parseInt(item.price.toString().replace(/,/g, ""))
+        )
+      );
+      setValue2(maxPrice);
+    }
+  }, [props.currentCatData]);
+
+  useEffect(() => {
+    filterByPrice(value[0], value[1]);
+  }, [value]);
+
+  const filterByBrand = (keyword) => {
+    props.filterByBrand(keyword);
+  };
+
+  const filterByRating = (keyword) => {
+    props.filterByRating(parseFloat(keyword));
+  };
+
+  const filterByPrice = (minValue, maxValue) => {
+    props.filterByPrice(minValue, maxValue);
+  };
 
   return (
-    <>
-      <div className="SideBar">
-        <div className="card border-0 shadow">
-          <h3>Category</h3>
-          <div className="cardList">
-            {props.data.length !== 0 &&
-              props.data.map((item, index) => {
-                return (
-                  <Link
-                    to={`/cat/${item.cat_name.toLowerCase()}`}
-                    key={index}
-                    style={{
-                      textDecoration: "none",
-                      textTransform: "capitalize",
-                      color: "black",
-                    }}
+    <div className="SideBar">
+      {/* Category */}
+      <div className="card border-0 shadow">
+        <h3>Category</h3>
+        <div className="cardList">
+          {props.data.length !== 0 &&
+            props.data.map((item, index) => (
+              <Link
+                to={`/cat/${item.cat_name.toLowerCase()}`}
+                key={index}
+                style={{
+                  textDecoration: "none",
+                  textTransform: "capitalize",
+                  color: "black",
+                }}
+              >
+                <div className="cardItem d-flex align-items-center mt-2">
+                  <span className="cardImg">
+                    <img src={img3} width={30} alt={`${item.cat_name} icon`} />
+                  </span>
+                  <h4
+                    className="mb-0 ml-3 mr-3"
+                    style={{ marginLeft: "10px", marginRight: "10px" }}
                   >
-                    <div className="cardItem d-flex align-items-center mt-2">
-                      <span className="cardImg">
-                        <img
-                          src={img3}
-                          width={30}
-                          alt={`${item.cat_name} icon`}
-                        />
-                      </span>
-                      <h4
-                        className="mb-0 ml-3 mr-3"
-                        style={{ marginLeft: "10px", marginRight: "10px" }}
-                      >
-                        {item.cat_name}
-                      </h4>
-                      <span
-                        className="d-flex align-items-center rounded-circle ml-auto"
-                        style={{ marginLeft: "auto" }}
-                      >
-                        {totalLength[index]}
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
-          </div>
+                    {item.cat_name}
+                  </h4>
+                  <span className="d-flex align-items-center rounded-circle ml-auto" style={{ marginLeft: "auto" }}>
+                    {totalLength[index]}
+                  </span>
+                </div>
+              </Link>
+            ))}
         </div>
-
-        <div className="card border-0 shadow mt-4">
-          <h3>Fill Up The Price</h3>
-          <br />
-          <Slider
-            min={1}
-            step={1}
-            max={10000}
-            getAriaLabel={() => "Temperature range"}
-            value={value}
-            onChange={handleChange}
-            valueLabelDisplay="auto"
-            getAriaValueText={valuetext}
-            color="success"
-          />
-          <div className="d-flex pt-2 pb-2 RangePrice">
-            <span>
-              From: <strong className="text-success">Rs: {value[0]}</strong>
-            </span>
-            <span className="RangePriceSpanMargin">
-              To: <strong className="text-success">Rs: {value[1]}</strong>
-            </span>
-          </div>
-
-          <div className="filters">
-            <h5>Color</h5>
-            <ul className="list list-inline">
-              <li>
-                {" "}
-                <Checkbox {...label} color="success" />
-                Black (10)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Red (22)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Blue (56)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Brown (32)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Gray (6)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Orange (16)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Blue (56)
-              </li>
-            </ul>
-          </div>
-
-          <div className="filters mb-0">
-            <h5>Item Conditions</h5>
-            <ul className="list list-inline">
-              <li>
-                {" "}
-                <Checkbox {...label} color="success" />
-                New (1506)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Refunished (22)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Used (6)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Refunished (32)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> New (6)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> Old (16)
-              </li>
-              <li>
-                <Checkbox {...label} color="success" /> OnlyYours (56)
-              </li>
-            </ul>
-          </div>
-          <div className="d-flex">
-            <Button className="btn btn-g" style={{ border: "black" }}>
-              <FilterAltOutlined /> Filter
-            </Button>
-          </div>
-        </div>
-        <img
-          src={BannerImg}
-          style={{
-            marginTop: "30px",
-            borderRadius: "10px",
-            width: "100%",
-            cursor: "pointer",
-          }}
-        />
       </div>
-    </>
+
+      {/* Price Filter */}
+      <div className="card border-0 shadow mt-4">
+        <h3>Fill Up The Price</h3>
+        <br />
+        <RangeSlider
+          color="success"
+          value={value}
+          onInput={setValue}
+          min={10}
+          max={60000}
+          step={5}
+        />
+        <div className="d-flex pt-2 pb-2 RangePrice">
+          <span>
+            From: <strong className="text-success">Rs: {value[0]}</strong>
+          </span>
+          <span className="RangePriceSpanMargin">
+            To: <strong className="text-success">Rs: {value[1]}</strong>
+          </span>
+        </div>
+
+        {/* Filter by Brand */}
+        <div className="filters pt-5">
+          <h5>Filter By Brand</h5>
+          <ul className="mb-0">
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="female"
+              name="radio-buttons-group"
+            >
+              {brandFilters.length !== 0 &&
+                brandFilters.map((item, index) => (
+                  <li key={index}>
+                    <FormControlLabel
+                      value={item}
+                      control={<Radio onChange={() => filterByBrand(item)} />}
+                      label={item}
+                    />
+                  </li>
+                ))}
+            </RadioGroup>
+          </ul>
+        </div>
+
+        {/* Filter by Rating */}
+        <div className="filters pt-0">
+          <h5>Filter By Ratings</h5>
+          <ul>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="female"
+              name="radio-buttons-group"
+            >
+              {ratingsArr.length !== 0 &&
+                ratingsArr.map((item, index) => (
+                  <li key={index}>
+                    <FormControlLabel
+                      value={item}
+                      control={<Radio onChange={() => filterByRating(item)} />}
+                      label={item}
+                    />
+                  </li>
+                ))}
+            </RadioGroup>
+          </ul>
+        </div>
+
+        <div className="d-flex">
+          <Button
+            className="btn btn-g"
+            style={{ border: "black" }}
+            onClick={() => context.openFilters()}
+          >
+            <FilterAltOutlined /> Filter
+          </Button>
+        </div>
+      </div>
+      <img
+        src={BannerImg}
+        style={{
+          marginTop: "30px",
+          borderRadius: "10px",
+          width: "100%",
+          cursor: "pointer",
+        }}
+      />
+    </div>
   );
 };
 
