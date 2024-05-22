@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import InnerImageZoom from "react-inner-image-zoom";
@@ -16,28 +16,29 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import CompareArrowsRoundedIcon from "@mui/icons-material/CompareArrowsRounded";
 
-import SideBar from "../../components/sidebar/SideBar";
-const Details = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+const Details = (props) => {
+  const [currentProduct, setCurrentProduct] = useState({});
+
+  let { id } = useParams();
+
   var settings = {
     dots: false,
     infinite: false,
     speed: 200,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 1,
     fade: false,
     arrows: true,
     autoplay: true,
     autoplaySpeed: 1000,
   };
-  const [urlimg, setUrlimg] = useState(img1);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isActive, setIsActive] = useState(2);
   const [InputRef, setinputRef] = useState(1);
+  const [activeTab, setActiveTab] = useState(2);
+
   const sliderRef = useRef();
 
-  const [activeTab, setActiveTab] = useState(2);
   const activeMe = (index) => {
     setIsActive(index);
   };
@@ -50,10 +51,27 @@ const Details = () => {
     setinputRef(InputRef - 1);
   };
 
-  const handleClickSlideImage = (index, imgUrl) => {
+  const handleClickSlideImage = (index) => {
     sliderRef.current.slickGoTo(index);
-    setUrlimg(imgUrl);
+    setSelectedImageIndex(index);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    props.data.length !== 0 &&
+      props.data.map((item) => {
+        item.items.length !== 0 &&
+          item.items.map((item_) => {
+            item_.products.length !== 0 &&
+              item_.products.map((product) => {
+                if (parseInt(product.id) === parseInt(id)) {
+                  setCurrentProduct(product);
+                  console.log(product);
+                }
+              });
+          });
+      });
+  }, [id]);
 
   return (
     <>
@@ -87,62 +105,63 @@ const Details = () => {
             {/* product Zoom */}
             <div className="col-md-5">
               <div className="productZoom">
-                <InnerImageZoom
-                  zoomType="hover"
-                  zoomScale={2}
-                  src={`${urlimg}`}
-                />
+                <div className="item">
+                  {currentProduct.productImages &&
+                    currentProduct.productImages.length > 0 && (
+                      <InnerImageZoom
+                        zoomType="hover"
+                        zoomScale={2}
+                        src={currentProduct.productImages[selectedImageIndex]}
+                      />
+                    )}
+                </div>
               </div>
               <Slider {...settings} className="zoomSlider" ref={sliderRef}>
-                {[
-                  { src: img1, index: 0 },
-                  { src: img2, index: 1 },
-                  { src: img3, index: 2 },
-                  { src: img4, index: 3 },
-                  { src: img1, index: 4 },
-                  { src: img5, index: 5 },
-                ].map((item) => (
-                  <div className="item" key={item.index}>
-                    <img
-                      src={item.src}
-                      className="w-100"
-                      onClick={() =>
-                        handleClickSlideImage(item.index, item.src)
-                      }
-                    />
-                  </div>
-                ))}
+                {currentProduct.productImages !== undefined &&
+                  currentProduct.productImages.map((imgUrl, index) => {
+                    return (
+                      <div className="item" key={index}>
+                        <img
+                          src={imgUrl}
+                          className="w-100"
+                          onClick={() => handleClickSlideImage(index)}
+                          alt={`Slide ${index}`}
+                        />
+                      </div>
+                    );
+                  })}
               </Slider>
             </div>
 
             {/* product Info */}
             <div className="col-md-7 productInfo">
-              <h2>Seeds of Change Organic Quinoa, Brown, & Red Rice</h2>
+              <h2>{currentProduct.productName}</h2>
               <div className="d-flex align-items-center mb-4">
                 <Rating
                   name="half-rating-read"
-                  defaultValue={3.5}
+                  value={parseFloat(currentProduct.rating)}
                   precision={0.5}
                   readOnly
                 />
                 <span className="text-light"> (30 Review)</span>
               </div>
               <div className="priceSec d-flex align-items-center mb-3">
-                <span className="text-g  priceLarge">$38</span>
+                <span className="text-g  priceLarge">
+                  Rs: {currentProduct.price}
+                </span>
                 <div
                   className="d-flex flex-column"
                   style={{ marginLeft: "12px" }}
                 >
-                  <span className="text-org">26% Off</span>
-                  <span className="text-light">$56</span>
+                  <span className="text-org">
+                    {currentProduct.discount}% Off
+                  </span>
+                  <span className="text-light">
+                    Rs: {currentProduct.oldPrice}
+                  </span>
                 </div>
               </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Perspiciatis cupiditate eaque commodi. Autem deleniti ipsum
-                accusantium quas, odio, hic in tenetur odit temporibus quos,
-                atque veniam. A sequi doloribus voluppe.
-              </p>
+              <p>{currentProduct.description}</p>
 
               <div className="productSize d-flex align-items-center">
                 <span>Size / Weight:</span>
@@ -224,15 +243,28 @@ const Details = () => {
             <div className="customTabs">
               <ul className="list list-inline">
                 <li className="list-inline-item">
-                  <Button className={`${activeTab === 0 && 'active'}`} onClick={() => setActiveTab(0)}>Description</Button>
+                  <Button
+                    className={`${activeTab === 0 && "active"}`}
+                    onClick={() => setActiveTab(0)}
+                  >
+                    Description
+                  </Button>
                 </li>
                 <li className="list-inline-item">
-                  <Button className={`${activeTab === 1 && 'active'}`} onClick={() => setActiveTab(1)}>
+                  <Button
+                    className={`${activeTab === 1 && "active"}`}
+                    onClick={() => setActiveTab(1)}
+                  >
                     Additional Info
                   </Button>
                 </li>
                 <li className="list-inline-item">
-                  <Button className={`${activeTab === 2 && 'active'}`} onClick={() => setActiveTab(2)}>Reviews (3)</Button>
+                  <Button
+                    className={`${activeTab === 2 && "active"}`}
+                    onClick={() => setActiveTab(2)}
+                  >
+                    Reviews (3)
+                  </Button>
                 </li>
               </ul>
             </div>

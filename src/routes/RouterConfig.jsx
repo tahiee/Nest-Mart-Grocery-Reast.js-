@@ -7,7 +7,7 @@ import Footer from "../components/footer/Footer";
 import About from "../pages/about/About";
 import NotFount from "../components/notFound/NotFount";
 import Details from "../pages/details/Details";
-import dbJson from '../../db.json';
+import dbJson from "../../db.json";
 import axios from "axios";
 
 const RouterConfig = () => {
@@ -17,10 +17,10 @@ const RouterConfig = () => {
     // getData("http://localhost:3000/productData");
     setProductData(dbJson.productData);
   }, []);
-  
+
   // const getData = async (url) => {
   //   try {
-  //     await axios.get(url).then((res) => { 
+  //     await axios.get(url).then((res) => {
   //       setProductData(res.data);
   //     });
   //   } catch (error) {
@@ -32,7 +32,7 @@ const RouterConfig = () => {
       <BrowserRouter>
         <Header data={productData} />
         <Routes>
-          <Route exact={true} path="/" element={<Home  data={productData}/>} />
+          <Route exact={true} path="/" element={<Home data={productData} />} />
           <Route
             exact={true}
             path="/cat/:id"
@@ -44,7 +44,11 @@ const RouterConfig = () => {
             element={<Listing data={productData} single={false} />}
           />
           <Route exact={true} path="/about" element={<About />} />
-          <Route exact={true} path="/product/details" element={<Details />} />
+          <Route
+            exact={true}
+            path="/product/:id"
+            element={<Details data={productData} />}
+          />
           <Route exact={true} path="/404" element={<NotFount />} />
         </Routes>
         <Footer />

@@ -145,7 +145,7 @@ const Navbar = (props) => {
                         </li>
                         <li>
                           <Button>
-                            <Link to={"/product/details"}>Product Details</Link>
+                            <Link to={`/product/id`}>Product Details</Link>
                           </Button>
                         </li>
                         <li>
