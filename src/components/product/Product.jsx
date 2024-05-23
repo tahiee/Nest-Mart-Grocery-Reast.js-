@@ -32,7 +32,7 @@ const Product = (props) => {
               <div className="imgWrapper">
                 <div className="p-4">
                   <img
-                    src={productData.catImg + "?im=Resize=(420,420)"}
+                    src={productData.catImg+"?im=Resize=(420,420)"}
                     className="w-100"
                   />
                 </div>

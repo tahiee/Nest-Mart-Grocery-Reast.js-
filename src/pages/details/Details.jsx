@@ -66,12 +66,27 @@ const Details = (props) => {
               item_.products.map((product) => {
                 if (parseInt(product.id) === parseInt(id)) {
                   setCurrentProduct(product);
-                  console.log(product);
+                  // console.log(product);
                 }
               });
           });
       });
   }, [id]);
+
+  const [prodCat, setProdCat] = useState({
+    parentCat: sessionStorage.getItem("parentCat") || "",
+    subCatName: sessionStorage.getItem("subCatName") || "",
+  });
+
+  useEffect(() => {
+    // console.log('Retrieving sessionStorage in Details component');
+    // console.log('parentCat:', sessionStorage.getItem("parentCat"));
+    // console.log('subCatName:', sessionStorage.getItem("subCatName"));
+    setProdCat({
+      parentCat: sessionStorage.getItem("parentCat") || "",
+      subCatName: sessionStorage.getItem("subCatName") || "",
+    });
+  }, []);
 
   return (
     <>
@@ -85,20 +100,58 @@ const Details = (props) => {
             padding: "0px",
           }}
         >
+          {/* Product Main Tags Starts */}
           <div className="container-fluid">
             <ul className="list list-inline breadCrumb2 breadCrumb3">
               <li className="list-inline-item">
                 <Link style={{ color: "#45d56b" }}>Home</Link> /
               </li>
-              <li className="list-inline-item">
-                <Link style={{ color: "#45d56b" }}>Shop</Link> /
-              </li>
-              <li className="list-inline-item">
-                <Link>Product Details</Link>
-              </li>
+              {prodCat.parentCat && (
+                <li className="list-inline-item">
+                  <Link
+                    style={{ color: "#45d56b" }}
+                    to={`/cat/${prodCat.parentCat
+                      .split(" ")
+                      .join("-")
+                      .toLowerCase()}`}
+                    onClick={() =>
+                      sessionStorage.setItem(
+                        "cat",
+                        prodCat.parentCat.split(" ").join("-").toLowerCase()
+                      )
+                    }
+                    className="text-capitalize"
+                  >
+                    {prodCat.parentCat}
+                  </Link>{" "}
+                  /
+                </li>
+              )}
+              {prodCat.subCatName && (
+                <li className="list-inline-item">
+                  <Link
+                    style={{ color: "#45d56b" }}
+                    to={`/cat/${prodCat.parentCat.toLowerCase()}/${prodCat.subCatName
+                      .replace(/\s/g, "-")
+                      .toLowerCase()}`}
+                    onClick={() =>
+                      sessionStorage.setItem(
+                        "cat",
+                        prodCat.subCatName.replace(/\s/g, "-").toLowerCase()
+                      )
+                    }
+                    className="text-capitalize"
+                  >
+                    {prodCat.subCatName}
+                  </Link>{" "}
+                  /
+                </li>
+              )}
+              <li className="list-inline-item">{currentProduct.productName}</li>
             </ul>
           </div>
         </div>
+        {/* Product Main Tags Ends */}
 
         <div className="container detailsContainer pt-3 pb-3">
           <div className="row">
@@ -163,51 +216,73 @@ const Details = (props) => {
               </div>
               <p>{currentProduct.description}</p>
 
-              <div className="productSize d-flex align-items-center">
-                <span>Size / Weight:</span>
-                <ul className="list list-inline">
-                  <li className="list-inline-item">
-                    <Link
-                      className={`tag ${isActive === 0 ? "active" : ""}`}
-                      onClick={() => activeMe(0)}
-                    >
-                      50g
-                    </Link>
-                  </li>
-                  <li className="list-inline-item">
-                    <Link
-                      className={`tag ${isActive === 1 ? "active" : ""}`}
-                      onClick={() => activeMe(1)}
-                    >
-                      60g
-                    </Link>
-                  </li>
-                  <li className="list-inline-item">
-                    <Link
-                      className={`tag ${isActive === 2 ? "active" : ""}`}
-                      onClick={() => activeMe(2)}
-                    >
-                      70g
-                    </Link>
-                  </li>
-                  <li className="list-inline-item">
-                    <Link
-                      className={`tag ${isActive === 3 ? "active" : ""}`}
-                      onClick={() => activeMe(3)}
-                    >
-                      80g
-                    </Link>
-                  </li>
-                  <li className="list-inline-item">
-                    <Link
-                      className={`tag ${isActive === 4 ? "active" : ""}`}
-                      onClick={() => activeMe(4)}
-                    >
-                      85g
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              {/* product details ram - size - weight */}
+              {currentProduct.weight !== undefined &&
+                currentProduct.weight.length !== 0 && (
+                  <div className="productSize d-flex align-items-center">
+                    <span>Size / Weight:</span>
+                    <ul className="list list-inline">
+                      {currentProduct.weight.map((item, index) => {
+                        return (
+                          <li className="list-inline-item">
+                            <Link
+                              className={`tag ${
+                                isActive === index ? "active" : ""
+                              }`}
+                              onClick={() => activeMe(index)}
+                            >
+                              {item}g
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              {currentProduct.RAM !== undefined &&
+                currentProduct.RAM.length !== 0 && (
+                  <div className="productSize d-flex align-items-center">
+                    <span>RAM:</span>
+                    <ul className="list list-inline">
+                      {currentProduct.RAM.map((item, index) => {
+                        return (
+                          <li className="list-inline-item">
+                            <Link
+                              className={`tag ${
+                                isActive === index ? "active" : ""
+                              }`}
+                              onClick={() => activeMe(index)}
+                            >
+                              {item} Gb
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              {currentProduct.SIZE !== undefined &&
+                currentProduct.SIZE.length !== 0 && (
+                  <div className="productSize d-flex align-items-center">
+                    <span>SIZE:</span>
+                    <ul className="list list-inline">
+                      {currentProduct.SIZE.map((item, index) => {
+                        return (
+                          <li className="list-inline-item">
+                            <Link
+                              className={`tag ${
+                                isActive === index ? "active" : ""
+                              }`}
+                              onClick={() => activeMe(index)}
+                            >
+                              {item}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
 
               <div className="addCartSection pt-3 pb-3 d-flex align-items-center">
                 <div className="counterSection">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HomeSlider from "./slideer/Slider";
 import "./home.css";
 import CatSlider from "../../components/catSlider/CatSlider";
@@ -19,8 +19,10 @@ const Home = (props) => {
   const [activeTabs, setActiveTabs] = useState();
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [activeData, setActiveData] = useState([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
   const [getBestSeller, setgetbestseller] = useState([]);
+  const productRow = useRef();
 
   var settings = {
     dots: false,
@@ -35,8 +37,8 @@ const Home = (props) => {
     centerMode: true,
   };
 
-  
   const catArr = [];
+
   useEffect(() => {
     prodData.length !== 0 &&
       prodData.map((item) => {
@@ -45,26 +47,43 @@ const Home = (props) => {
             catArr.push(item_.cat_name);
           });
       });
+
     const list2 = catArr.filter(
       (item, index) => catArr.indexOf(item) === index
     );
     setcatArray(list2);
+
     setActiveTabs(list2[0]);
+
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    if (activeTabs && prodData.length !== 0) {
-      const newData = prodData.flatMap((item) => {
-        return item.items
-          .filter((item_) => item_.cat_name === activeTabs)
-          .flatMap((item_) => item_.products);
-      });
-      setActiveData(newData);
-    } else {
-      setActiveData([]);
-    }
-  }, [activeTabs, prodData]);
+    var arr = [];
+    setActiveData(arr);
+    prodData.length !== 0 &&
+      prodData.map((item, index) => {
+        item.items.map((item_, index_) => {
+          if (item_.cat_name === activeTabs) {
+            {
+              item_.products.length !== 0 &&
+                item_.products.map((product) => {
+                  arr.push({
+                    ...product,
+                    parentCatName: item.cat_name,
+                    subCatName: item_.cat_name,
+                  });
+                });
 
+              setActiveData(arr);
+              setTimeout(() => {
+                setIsLoadingProducts(false);
+              }, [1000]);
+            }
+          }
+        });
+      });
+  }, [activeTabs, activeData]);
 
   // fetch best seller data from db.json
   const bestSellerArray = [];
@@ -98,20 +117,24 @@ const Home = (props) => {
             <h2 className="hd mb-0 mt-0">Popular Products</h2>
             <ul className="list list-inline filterTab">
               {catArray.length !== 0 &&
-                catArray.map((item, index) => {
+                catArray.map((cat, index) => {
                   return (
-                    <li className="list list-inline-item" key={index}>
-                      <Link
-                        className={`cursor text-capitalize ${
-                          activeTabIndex === index && "act"
-                        }`}
+                    <li className="list list-inline-item">
+                      <a
+                        className={`cursor text-capitalize 
+                                                ${
+                                                  activeTabIndex === index
+                                                    ? "act"
+                                                    : ""
+                                                }`}
                         onClick={() => {
+                          setActiveTabs(cat);
                           setActiveTabIndex(index);
-                          setActiveTabs(item);
+                          setIsLoadingProducts(true);
                         }}
                       >
-                        {item}
-                      </Link>
+                        {cat}
+                      </a>
                     </li>
                   );
                 })}
@@ -157,16 +180,14 @@ const Home = (props) => {
 
             <div className="col-md-9 p-0">
               <Slider {...settings} className="productSlider">
-                {
-                  getBestSeller.length!==0 &&
-                  getBestSeller.map((item,index)=>{
-                      return(
-                        <div className="item" key={index}>
-                    <Product tag={item.type} item={item} />
+                {getBestSeller.length !== 0 &&
+                  getBestSeller.map((item, index) => {
+                    return (
+                      <div className="item" key={index}>
+                        <Product tag={item.type} item={item} />
                       </div>
-                      )
-                  })
-                }
+                    );
+                  })}
               </Slider>
             </div>
           </div>

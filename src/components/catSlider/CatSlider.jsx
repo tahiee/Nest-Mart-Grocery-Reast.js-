@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 const CatSlider = (props) => {
   const [allData, setAllData] = useState(props.data);
-  const [totalLength , setTotalLength] = useState([])
+  const [totalLength, setTotalLength] = useState([]);
   const [itemsbg, setItembg] = useState([
     "#ffeceb",
     "#ecffec",
@@ -57,8 +57,10 @@ const CatSlider = (props) => {
         lengthArray.push(catLength);
         catLength = 0;
       });
-      const list = lengthArray.filter((item,index)=>lengthArray.indexOf(item)=== index )
-      setTotalLength(list)
+    const list = lengthArray.filter(
+      (item, index) => lengthArray.indexOf(item) === index
+    );
+    setTotalLength(list);
   }, []);
 
   return (
@@ -71,13 +73,16 @@ const CatSlider = (props) => {
               allData.map((item, index) => {
                 // console.log(item);
                 return (
-                  <div className="item" key={index} >
+                  <div className="item" key={index}>
                     <Link to={`/cat/${item.cat_name?.toLowerCase()}`}>
-                    <div className="info" style={{background:itemsbg[index]}}>
-                      <img src={item.image} style={{ width: "80px" }} />
-                      <h5 className="text-capitalize">{item.cat_name}</h5>
-                      <p>{totalLength[index]}</p>
-                    </div>
+                      <div
+                        className="info"
+                        style={{ background: itemsbg[index] }}
+                      >
+                        <img src={item.image} style={{ width: "80px" }} />
+                        <h5 className="text-capitalize">{item.cat_name}</h5>
+                        <p>{totalLength[index]}</p>
+                      </div>
                     </Link>
                   </div>
                 );
