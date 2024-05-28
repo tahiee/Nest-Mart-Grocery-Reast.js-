@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
@@ -15,12 +15,10 @@ import { Button } from "react-bootstrap";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import CompareArrowsRoundedIcon from "@mui/icons-material/CompareArrowsRounded";
+import Product from "../../components/product/Product";
+import axios from "axios";
 
 const Details = (props) => {
-  const [currentProduct, setCurrentProduct] = useState({});
-
-  let { id } = useParams();
-
   var settings = {
     dots: false,
     infinite: false,
@@ -32,13 +30,37 @@ const Details = (props) => {
     autoplay: true,
     autoplaySpeed: 1000,
   };
+  var related = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    fade: false,
+    // arrows: context.windowWidth > 992 ? true : false
+  };
+  const [bigImageSize, setBigImageSize] = useState([1500, 1500]);
+  const [smlImageSize, setSmlImageSize] = useState([150, 150]);
+  const [currentProduct, setCurrentProduct] = useState({});
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  // const context = useContext(MyContext);
+
+  let { id } = useParams();
+
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isActive, setIsActive] = useState(2);
   const [InputRef, setinputRef] = useState(1);
   const [activeTab, setActiveTab] = useState(2);
 
   const sliderRef = useRef();
-
+  const [rating, setRating] = useState(0.0);
+  const [reviewFields, setReviewFields] = useState({
+    review: "",
+    userName: "",
+    rating: 0.0,
+    productId: 0,
+    date: "",
+  });
   const activeMe = (index) => {
     setIsActive(index);
   };
@@ -71,7 +93,33 @@ const Details = (props) => {
               });
           });
       });
-  }, [id]);
+
+    //related products code
+
+    const related_products = [];
+    props.data.length !== 0 &&
+      props.data.map((item) => {
+        if (prodCat.parentCat === item.cat_name) {
+          item.items.length !== 0 &&
+            item.items.map((item_) => {
+              if (prodCat.subCatName === item_.cat_name) {
+                item_.products.length !== 0 &&
+                  item_.products.map((product, index) => {
+                    if (product.id !== parseInt(id)) {
+                      related_products.push(product);
+                    }
+                  });
+              }
+            });
+        }
+      });
+
+    if (related_products.length !== 0) {
+      setRelatedProducts(related_products);
+    }
+
+    // getCartData("http://localhost:3000/cartItems");
+  }, [id, props.data]);
 
   const [prodCat, setProdCat] = useState({
     parentCat: sessionStorage.getItem("parentCat") || "",
@@ -79,14 +127,53 @@ const Details = (props) => {
   });
 
   useEffect(() => {
-    // console.log('Retrieving sessionStorage in Details component');
-    // console.log('parentCat:', sessionStorage.getItem("parentCat"));
-    // console.log('subCatName:', sessionStorage.getItem("subCatName"));
     setProdCat({
       parentCat: sessionStorage.getItem("parentCat") || "",
       subCatName: sessionStorage.getItem("subCatName") || "",
     });
   }, []);
+
+  const [productData, setProductData] = useState(props.data);
+  const changeInput = (name, value) => {
+    if (name === "rating") {
+      setRating(value);
+    }
+    setReviewFields(() => ({
+      ...reviewFields,
+      [name]: value,
+    }));
+  };
+
+  const submitReview = (e) => {
+    e.preventDefault();
+  
+    // Retrieve existing reviews from localStorage or initialize an empty array
+    const existingReviews = JSON.parse(localStorage.getItem('productReviews')) || [];
+  
+    // Create a new review object
+    const productReviews = {
+      review: reviewFields.review,
+      userName: reviewFields.userName,
+      rating: rating,
+      date: new Date().toLocaleString(),
+      id: existingReviews.length + 1, // Generate a unique ID for the new review
+    };
+  
+    // Add the new review to the existing reviews array
+    const updatedReviews = [...existingReviews, productReviews];
+  
+    // Store the updated reviews array back in localStorage
+    localStorage.setItem('productReviews', JSON.stringify(updatedReviews));
+  
+    // Optionally reset the form fields
+    setReviewFields({
+      review: "",
+      userName: "",
+      rating: "",
+    });
+    setRating("");
+  };
+  
 
   return (
     <>
@@ -164,7 +251,7 @@ const Details = (props) => {
                       <InnerImageZoom
                         zoomType="hover"
                         zoomScale={2}
-                        src={currentProduct.productImages[selectedImageIndex]}
+                        src={`${currentProduct.productImages[selectedImageIndex]}?im=Resize=(${bigImageSize[0]},${bigImageSize[1]})`}
                       />
                     )}
                 </div>
@@ -175,7 +262,7 @@ const Details = (props) => {
                     return (
                       <div className="item" key={index}>
                         <img
-                          src={imgUrl}
+                          src={`${imgUrl}?im=Resize=(${smlImageSize[0]},${smlImageSize[1]})`}
                           className="w-100"
                           onClick={() => handleClickSlideImage(index)}
                           alt={`Slide ${index}`}
@@ -224,7 +311,7 @@ const Details = (props) => {
                     <ul className="list list-inline">
                       {currentProduct.weight.map((item, index) => {
                         return (
-                          <li className="list-inline-item">
+                          <li className="list-inline-item" key={index}>
                             <Link
                               className={`tag ${
                                 isActive === index ? "active" : ""
@@ -268,7 +355,7 @@ const Details = (props) => {
                     <ul className="list list-inline">
                       {currentProduct.SIZE.map((item, index) => {
                         return (
-                          <li className="list-inline-item">
+                          <li className="list-inline-item" key={index}>
                             <Link
                               className={`tag ${
                                 isActive === index ? "active" : ""
@@ -347,69 +434,7 @@ const Details = (props) => {
             <br />
 
             {activeTab === 0 && (
-              <div className="tabContent  1">
-                <p>
-                  Uninhibited carnally hired played in whimpered dear gorilla
-                  koala depending and much yikes off far quetzal goodness and
-                  from for grimaced goodness unaccountably and meadowlark near
-                  unblushingly crucial scallop tightly neurotic hungrily some
-                  and dear furiously this apart.
-                </p>
-                <p>
-                  Spluttered narrowly yikes left moth in yikes bowed this that
-                  grizzly much hello on spoon-fed that alas rethought much
-                  decently richly and wow against the frequent fluidly at
-                  formidable acceptably flapped besides and much circa far over
-                  the bucolically hey precarious goldfinch mastodon goodness
-                  gnashed a jellyfish and one however because
-                </p>
-                <br />
-                <hr />
-                <h2>Packaging & Delivery</h2>
-                <p>
-                  Less lion goodness that euphemistically robin expeditiously
-                  bluebird smugly scratched far while thus cackled sheepishly
-                  rigid after due one assenting regarding censorious while
-                  occasional or this more crane went more as this less much amid
-                  overhung anathematic because much held one exuberantly sheep
-                  goodness so where rat wry well concomitantly.
-                </p>
-                <p>
-                  Scallop or far crud plain remarkably far by thus far iguana
-                  lewd precociously and and less rattlesnake contrary caustic
-                  wow this near alas and next and pled the yikes articulate
-                  about as less cackled dalmatian in much less well jeering for
-                  the thanks blindly sentimental whimpered less across
-                  objectively fanciful grimaced wildly some wow and rose jeepers
-                  outgrew lugubrious luridly irrationally attractively
-                  dachshund.
-                </p>
-                <br />
-                <hr />
-                <h2>Suggested Use</h2>
-                <p style={{ margin: "0px" }}>
-                  <strong style={{ color: "red" }}>
-                    Refrigeration not necessary.
-                  </strong>
-                </p>
-                <p style={{ margin: "0px" }}>
-                  <strong style={{ color: "red" }}>Stir before serving.</strong>
-                </p>
-                <hr />
-                <br />
-                <h2>Other Ingredients</h2>
-                <p style={{ margin: "0px" }}>
-                  <strong style={{ color: "red" }}>
-                    Organic raw pecans, organic raw cashews..
-                  </strong>
-                </p>
-                <p style={{ margin: "0px" }}>
-                  <strong style={{ color: "red" }}>
-                    This butter was produced using a LTG (Low Temperature
-                    Grinding) process
-                  </strong>
-                </p>
-              </div>
+              <div className="tabContent  1">{currentProduct.description}</div>
             )}
 
             {activeTab === 1 && (
@@ -566,7 +591,7 @@ const Details = (props) => {
                         </p>
                       </div>
                     </div>
-                    <div
+                    {/* <div
                       className="card p-4 reviewsCard flex-row"
                       style={{ marginLeft: "40px" }}
                     >
@@ -608,7 +633,7 @@ const Details = (props) => {
                           <img src="https://nest-grocery.vercel.app/assets/author/author-2.png" />
                         </div>
                         <span className="text-g d-block text-center font-weight-bold">
-                          Seiana
+                          Maria
                         </span>
                       </div>
                       <div className="info" style={{ paddingLeft: "10px" }}>
@@ -634,9 +659,13 @@ const Details = (props) => {
                           animi!
                         </p>
                       </div>
-                    </div>
+                    </div> */}
 
-                    <form action="" className="reviewCommentSection">
+                    <form
+                      action=""
+                      className="reviewCommentSection"
+                      onSubmit={submitReview}
+                    >
                       <h2>Add a Review</h2>
 
                       <div className="form-group">
@@ -645,6 +674,10 @@ const Details = (props) => {
                           rows="5"
                           placeholder="Write a Comment:"
                           className="form-control"
+                          name="review"
+                          onChange={(e) =>
+                            changeInput(e.target.name, e.target.value)
+                          }
                         ></textarea>
                       </div>
                       <div className="row">
@@ -654,27 +687,33 @@ const Details = (props) => {
                               className="form-control"
                               type="text"
                               placeholder="Name"
+                              name="userName"
+                              onChange={(e) =>
+                                changeInput(e.target.name, e.target.value)
+                              }
                             />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <input
-                              className="form-control"
-                              type="text"
-                              placeholder="Email"
+                            <Rating
+                              name="rating"
+                              value={rating}
+                              precision={0.5}
+                              onChange={(e) =>
+                                changeInput(e.target.name, e.target.value)
+                              }
+                              // onChange={(event, newValue) => {
+                              //   // console.log(newValue);
+                              //   setRating(newValue);
+                              // }}
                             />
                           </div>
                         </div>
-                        <div className="form-group">
-                          <input
-                            className="form-control"
-                            type="text"
-                            placeholder="Address"
-                          />
-                        </div>
                       </div>
-                      <Button className="btn-g">Submint</Button>
+                      <Button className="btn-g" type="submit">
+                        Submit
+                      </Button>
                     </form>
                   </div>
 
@@ -775,6 +814,21 @@ const Details = (props) => {
                 </div>
               </div>
             )}
+          </div>
+          <br />
+          <div className="relatedProducts homeProductsRow2  pt-5 pb-4">
+            <h2 class="hd mb-0 mt-0">Related products</h2>
+            <br className="res-hide" />
+            <Slider {...related} className="prodSlider">
+              {relatedProducts.length !== 0 &&
+                relatedProducts.map((product, index) => {
+                  return (
+                    <div className="item" key={index}>
+                      <Product tag={product.type} item={product} />
+                    </div>
+                  );
+                })}
+            </Slider>
           </div>
         </div>
       </section>

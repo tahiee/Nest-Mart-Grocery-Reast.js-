@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import HomeSlider from "./slideer/Slider";
 import "./home.css";
 import CatSlider from "../../components/catSlider/CatSlider";
@@ -6,7 +6,6 @@ import Banner from "../../components/banner/Banner";
 import Product from "../../components/product/Product";
 import PopularBanner from "../../images/banner4.jpg";
 import Slider from "react-slick";
-import sliderimg1 from "../../images/popular/product-8-1.jpg";
 import TopProducts from "./topProducts/TopProducts";
 import img1 from "../../images/thumbnail-1.jpg";
 import img2 from "../../images/thumbnail-2.jpg";
@@ -40,70 +39,69 @@ const Home = (props) => {
   const catArr = [];
 
   useEffect(() => {
-    prodData.length !== 0 &&
-      prodData.map((item) => {
-        item.items.length !== 0 &&
-          item.items.map((item_) => {
+    if (prodData.length !== 0) {
+      prodData.forEach((item) => {
+        if (item.items.length !== 0) {
+          item.items.forEach((item_) => {
             catArr.push(item_.cat_name);
           });
+        }
       });
 
-    const list2 = catArr.filter(
-      (item, index) => catArr.indexOf(item) === index
-    );
-    setcatArray(list2);
-
-    setActiveTabs(list2[0]);
-
-    window.scrollTo(0, 0);
-  }, []);
+      const list2 = catArr.filter(
+        (item, index) => catArr.indexOf(item) === index
+      );
+      setcatArray(list2);
+      setActiveTabs(list2[0]);
+      window.scrollTo(0, 0);
+    }
+  }, [prodData]);
 
   useEffect(() => {
-    var arr = [];
+    const arr = [];
     setActiveData(arr);
-    prodData.length !== 0 &&
-      prodData.map((item, index) => {
-        item.items.map((item_, index_) => {
+    if (prodData.length !== 0) {
+      prodData.forEach((item) => {
+        item.items.forEach((item_) => {
           if (item_.cat_name === activeTabs) {
-            {
-              item_.products.length !== 0 &&
-                item_.products.map((product) => {
-                  arr.push({
-                    ...product,
-                    parentCatName: item.cat_name,
-                    subCatName: item_.cat_name,
-                  });
+            if (item_.products.length !== 0) {
+              item_.products.forEach((product) => {
+                arr.push({
+                  ...product,
+                  parentCatName: item.cat_name,
+                  subCatName: item_.cat_name,
                 });
-
+              });
               setActiveData(arr);
               setTimeout(() => {
                 setIsLoadingProducts(false);
-              }, [1000]);
+              }, 1000);
             }
           }
         });
       });
-  }, [activeTabs, activeData]);
+    }
+  }, [activeTabs, prodData]);
 
-  // fetch best seller data from db.json
   const bestSellerArray = [];
   useEffect(() => {
-    {
-      prodData.length !== 0 &&
-        prodData.map((item) => {
-          if (item.cat_name === "Electronics") {
-            item.items.length !== 0 &&
-              item.items.map((item_) => {
-                item_.produts !== 0 &&
-                  item_.products.map((productItem, Index) => {
-                    bestSellerArray.push(productItem);
-                  });
-              });
+    if (prodData.length !== 0) {
+      prodData.forEach((item) => {
+        if (item.cat_name === "Electronics") {
+          if (item.items.length !== 0) {
+            item.items.forEach((item_) => {
+              if (item_.products.length !== 0) {
+                item_.products.forEach((productItem) => {
+                  bestSellerArray.push(productItem);
+                });
+              }
+            });
           }
-        });
+        }
+      });
     }
     setgetbestseller(bestSellerArray);
-  }, []);
+  }, [prodData]);
 
   return (
     <>
@@ -117,39 +115,32 @@ const Home = (props) => {
             <h2 className="hd mb-0 mt-0">Popular Products</h2>
             <ul className="list list-inline filterTab">
               {catArray.length !== 0 &&
-                catArray.map((cat, index) => {
-                  return (
-                    <li className="list list-inline-item">
-                      <a
-                        className={`cursor text-capitalize 
-                                                ${
-                                                  activeTabIndex === index
-                                                    ? "act"
-                                                    : ""
-                                                }`}
-                        onClick={() => {
-                          setActiveTabs(cat);
-                          setActiveTabIndex(index);
-                          setIsLoadingProducts(true);
-                        }}
-                      >
-                        {cat}
-                      </a>
-                    </li>
-                  );
-                })}
+                catArray.map((cat, index) => (
+                  <li className="list list-inline-item" key={index}>
+                    <a
+                      className={`cursor text-capitalize ${
+                        activeTabIndex === index ? "act" : ""
+                      }`}
+                      onClick={() => {
+                        setActiveTabs(cat);
+                        setActiveTabIndex(index);
+                        setIsLoadingProducts(true);
+                      }}
+                    >
+                      {cat}
+                    </a>
+                  </li>
+                ))}
             </ul>
           </div>
 
           <div className="row product-row">
             {activeData.length !== 0 &&
-              activeData.map((item, index) => {
-                return (
-                  <div className="item" key={index}>
-                    <Product tag={item.type} item={item} />
-                  </div>
-                );
-              })}
+              activeData.map((item, index) => (
+                <div className="item" key={index}>
+                  <Product tag={item.type} item={item} />
+                </div>
+              ))}
           </div>
         </div>
       </section>
@@ -175,19 +166,21 @@ const Home = (props) => {
 
           <div className="row">
             <div className="col-sm-3 p-0">
-              <img src={PopularBanner} className="popularSliderImg" />
+              <img
+                src={PopularBanner}
+                className="popularSliderImg"
+                alt="Popular Banner"
+              />
             </div>
 
             <div className="col-md-9 p-0">
               <Slider {...settings} className="productSlider">
                 {getBestSeller.length !== 0 &&
-                  getBestSeller.map((item, index) => {
-                    return (
-                      <div className="item" key={index}>
-                        <Product tag={item.type} item={item} />
-                      </div>
-                    );
-                  })}
+                  getBestSeller.map((item, index) => (
+                    <div className="item" key={index}>
+                      <Product tag={item.type} item={item} />
+                    </div>
+                  ))}
               </Slider>
             </div>
           </div>

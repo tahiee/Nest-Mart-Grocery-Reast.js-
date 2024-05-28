@@ -1,5 +1,6 @@
 .productThumb {
-  width: 100%;
+  /* margin-right: 10px; */
+  width: 98%;
   height: auto;
   border: 1px solid rgb(0, 0, 0, 0.1);
   border-radius: 15px;

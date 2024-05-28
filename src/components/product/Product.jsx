@@ -19,9 +19,14 @@ const Product = (props) => {
     // console.log({props})
   }, [props.item]);
 
+  const setProductCat=()=>{
+    sessionStorage.setItem('parentCat', productData.parentCatName);
+    sessionStorage.setItem('subCatName', productData.subCatName);
+}
+
   return (
     <>
-      <div className="productThumb">
+      <div className="productThumb"  onClick={setProductCat}>
         {productData?.tag !== null && productData?.tag !== undefined && (
           <span className={`badge ${productData.tag}`}>{productData.tag}</span>
         )}
@@ -32,8 +37,8 @@ const Product = (props) => {
               <div className="imgWrapper">
                 <div className="p-4">
                   <img
-                    src={productData.catImg+"?im=Resize=(420,420)"}
-                    className="w-100"
+                    src={productData.catImg + "?im=Resize=(420,420)"}
+                    className="w-100" 
                   />
                 </div>
                 <div className="overLay tranisition">

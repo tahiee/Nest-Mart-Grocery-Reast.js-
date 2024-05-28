@@ -77,12 +77,12 @@ const Navbar = (props) => {
                                           to={`/cat/${item.cat_name?.toLowerCase()}/${item_.cat_name
                                             .replace(/\s/g, "-")
                                             .toLowerCase()}`}
-                                            onClick={() =>
-                                              sessionStorage.setItem(
-                                                "cat",
-                                                item.cat_name.toLowerCase()
-                                              )
-                                            }
+                                          onClick={() =>
+                                            sessionStorage.setItem(
+                                              "cat",
+                                              item.cat_name.toLowerCase()
+                                            )
+                                          }
                                         >
                                           {item_.cat_name}
                                         </Link>
@@ -167,10 +167,10 @@ const Navbar = (props) => {
                     <div className="dropDown_Menu megaMenu w-100">
                       <div className="row">
                         {props.data.length !== 0 &&
-                          props.data.map((item, index) => {
+                          props.data.map((item, index1) => {
                             // console.log(item,'this is my nav props.data');
                             return (
-                              <div className="col">
+                              <div className="col" key={index1}>
                                 <Link
                                   to={`/cat/${item.cat_name.toLowerCase()}`}
                                   style={{ textDecoration: "none" }}
@@ -183,7 +183,7 @@ const Navbar = (props) => {
                                   <ul className="mt-4 mb-0">
                                     {item.items.map((item_, index) => {
                                       return (
-                                        <li>
+                                        <li key={index}>
                                           <Link
                                             to={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
                                               .replace(/\s/g, "-")

@@ -10,12 +10,14 @@ import Details from "../pages/details/Details";
 import dbJson from "../../db.json";
 import axios from "axios";
 
-const RouterConfig = () => {
+const RouterConfig = (props) => {
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
     // getData("http://localhost:3000/productData");
-    setProductData(dbJson.productData);
+    setTimeout(() => {
+      setProductData(dbJson.productData);
+    }, 1000);
   }, []);
 
   // const getData = async (url) => {
@@ -28,32 +30,34 @@ const RouterConfig = () => {
   //   }
   // };
   return (
-    productData.length !== 0 && (
-      <BrowserRouter>
-        <Header data={productData} />
+    <BrowserRouter>
+      <Header data={productData} />
+      {productData ? (
         <Routes>
-          <Route exact={true} path="/" element={<Home data={productData} />} />
+          <Route exact path="/" element={<Home data={productData} />} />
           <Route
-            exact={true}
+            exact
             path="/cat/:id"
             element={<Listing data={productData} single={true} />}
           />
           <Route
-            exact={true}
+            exact
             path="/cat/:id/:id"
             element={<Listing data={productData} single={false} />}
           />
-          <Route exact={true} path="/about" element={<About />} />
+          <Route exact path="/about" element={<About />} />
           <Route
-            exact={true}
+            exact
             path="/product/:id"
             element={<Details data={productData} />}
           />
-          <Route exact={true} path="/404" element={<NotFount />} />
+          <Route exact path="/404" element={<NotFount />} />
         </Routes>
-        <Footer />
-      </BrowserRouter>
-    )
+      ) : (
+        <div>Loading...</div>
+      )}
+      <Footer />
+    </BrowserRouter>
   );
 };
 
