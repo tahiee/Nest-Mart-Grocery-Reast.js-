@@ -172,6 +172,7 @@ const Details = (props) => {
       rating: "",
     });
     setRating("");
+    alert('Review Added')
   };
   
 
@@ -591,7 +592,7 @@ const Details = (props) => {
                         </p>
                       </div>
                     </div>
-                    {/* <div
+                    <div
                       className="card p-4 reviewsCard flex-row"
                       style={{ marginLeft: "40px" }}
                     >
@@ -659,7 +660,7 @@ const Details = (props) => {
                           animi!
                         </p>
                       </div>
-                    </div> */}
+                    </div>
 
                     <form
                       action=""
