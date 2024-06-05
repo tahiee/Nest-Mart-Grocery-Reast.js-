@@ -16,7 +16,7 @@ export const Navbar = (props) => {
     // console.log(props.data);
     setnavData(props.data);
     window.scrollTo(0, 0);
-  }, []);
+  }, [props.data]);
   return (
     <>
       <div className="nav d-flex align-items-center">
@@ -99,38 +99,6 @@ export const Navbar = (props) => {
                       );
                     })}
 
-                  {/* Conductions of nav 3 elements groceries , electronic & fashion ends */}
-
-                  {/* <li className="list-inline-item">
-              <Button>
-                <Link to={"/about"}>About</Link>
-              </Button>
-            </li> */}
-
-                  {/* Vendor Li start */}
-                  {/* <li className="list-inline-item">
-              <Button>
-                <Link>Vendor</Link>
-                <KeyboardArrowDown />
-              </Button>
-
-              <div className="dropDown_Menu">
-                <ul>
-                  <li>
-                    <Button>
-                      <Link to={"/about"}>About</Link>
-                    </Button>
-                  </li>
-                  <li>
-                    <Button>
-                      <Link to={"/about"}>Contact</Link>
-                    </Button>
-                  </li>
-                </ul>
-              </div>
-            </li> */}
-                  {/* vendor li ends */}
-
                   <li className="list-inline-item">
                     <Button>
                       <Link>Shop</Link>
@@ -199,116 +167,12 @@ export const Navbar = (props) => {
                               </div>
                             );
                           })}
-
-                        {/* mega menu col 1 starts */}
-
-                        {/* <div className="col">
-              <h4 className="text-g">Fruites & Vegetabels</h4>
-              <ul className="mt-3 mb-0">
-                <li>
-                  <Link to="">Meat & Poultry</Link>
-                </li>
-                <li>
-                  <Link to="">Fresh Vegetables</Link>
-                </li>
-                <li>
-                  <Link to="">Herbs & Seasonings </Link>
-                </li>
-                <li>
-                  <Link to="">Cuts & Sprouts</Link>
-                </li>
-                <li>
-                  <Link to="">Exotis Fruits & Veggies</Link>
-                </li>
-                <li>
-                  <Link to="">Packges & Products</Link>
-                </li>
-              </ul>
-            </div> */}
-
-                        {/* mega menu col 1 ends */}
-                        {/* mega menu col 2 starts */}
-
-                        {/* <div className="col">
-              <h4 className="text-g">Breakfast & Dairy</h4>
-              <ul className="mt-3 mb-0">
-                <li>
-                  <Link to="">Meat & Poultry</Link>
-                </li>
-                <li>
-                  <Link to="">Fresh Vegetables</Link>
-                </li>
-                <li>
-                  <Link to="">Herbs & Seasonings </Link>
-                </li>
-                <li>
-                  <Link to="">Cuts & Sprouts</Link>
-                </li>
-                <li>
-                  <Link to="">Exotis Fruits & Veggies</Link>
-                </li>
-                <li>
-                  <Link to="">Packges & Products</Link>
-                </li>
-              </ul>
-            </div> */}
-
-                        {/* mega menu col 2 ends */}
-                        {/* mega menu col 3 starts */}
-
-                        {/* <div className="col">
-              <h4 className="text-g">Meat & Seafood</h4>
-              <ul className="mt-3 mb-0">
-                <li>
-                  <Link to="">Meat & Poultry</Link>
-                </li>
-                <li>
-                  <Link to="">Fresh Vegetables</Link>
-                </li>
-                <li>
-                  <Link to="">Herbs & Seasonings </Link>
-                </li>
-                <li>
-                  <Link to="">Cuts & Sprouts</Link>
-                </li>
-                <li>
-                  <Link to="">Exotis Fruits & Veggies</Link>
-                </li>
-                <li>
-                  <Link to="">Packges & Products</Link>
-                </li>
-              </ul>
-            </div> */}
-
-                        {/* mega menu col 3 ends */}
-
                         <div className="col">
                           <img src={MegaImgt} className="mt-3 mb-0" />
                         </div>
                       </div>
                     </div>
                   </li>
-                  {/* mega menu ends */}
-
-                  {/* Blog start */}
-
-                  {/* <li className="list-inline-item">
-              <Button>
-                <Link>Blog</Link>
-                <KeyboardArrowDown />
-              </Button>
-              <div className="dropDown_Menu">
-                <ul>
-                  <li>
-                    <Button>
-                      <Link to={"/about"}>Blogs</Link>
-                    </Button>
-                  </li>
-                </ul>
-              </div>
-            </li> */}
-
-                  {/* blog ends */}
 
                   <li className="list-inline-item">
                     <Button>

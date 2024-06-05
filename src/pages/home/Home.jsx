@@ -13,7 +13,7 @@ import img3 from "../../images/thumbnail-3.jpg";
 import { Link } from "react-router-dom";
 
 const Home = (props) => {
-  const [prodData, setProdData] = useState(props.data);
+  const [prodData, setProdData] = useState([]);
   const [catArray, setcatArray] = useState([]);
   const [activeTabs, setActiveTabs] = useState();
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -102,6 +102,10 @@ const Home = (props) => {
     }
     setgetbestseller(bestSellerArray);
   }, [prodData]);
+
+  useEffect(() => {
+    setProdData(props.data);
+  }, [props.data]);
 
   return (
     <>
