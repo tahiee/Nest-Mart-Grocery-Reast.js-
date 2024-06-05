@@ -32,7 +32,7 @@ const RouterConfig = (props) => {
   return (
     <BrowserRouter>
       <Header data={productData} />
-      {productData ? (
+
         <Routes>
           <Route exact path="/" element={<Home data={productData} />} />
           <Route
@@ -53,9 +53,7 @@ const RouterConfig = (props) => {
           />
           <Route exact path="/404" element={<NotFount />} />
         </Routes>
-      ) : (
-        <div>Loading...</div>
-      )}
+
       <Footer />
     </BrowserRouter>
   );
