@@ -15,7 +15,7 @@ import itme11 from "../../images/category/cat-9.png";
 import { Link } from "react-router-dom";
 
 const CatSlider = (props) => {
-  const [allData, setAllData] = useState(props.data);
+  const [allData, setAllData] = useState([]);
   const [totalLength, setTotalLength] = useState([]);
   const [itemsbg, setItembg] = useState([
     "#ffeceb",
@@ -62,6 +62,10 @@ const CatSlider = (props) => {
     );
     setTotalLength(list);
   }, []);
+  
+  useEffect(() => {
+    setAllData(props.data)
+  }, [props.data])
 
   return (
     <>
