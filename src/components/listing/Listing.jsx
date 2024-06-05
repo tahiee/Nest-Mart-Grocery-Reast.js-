@@ -38,7 +38,10 @@ const Listing = (props) => {
         } else {
           //page == double cat
           item.items.forEach((item_) => {
-            if (item_.cat_name.split(" ").join("-").toLowerCase() === id.split(" ").join("-").toLowerCase()) {
+            if (
+              item_.cat_name.split(" ").join("-").toLowerCase() ===
+              id.split(" ").join("-").toLowerCase()
+            ) {
               item_.products.forEach((product) => {
                 itemsData.push({
                   ...product,
@@ -52,7 +55,9 @@ const Listing = (props) => {
       });
     }
 
-    const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
+    const list2 = itemsData.filter(
+      (item, index) => itemsData.indexOf(item) === index
+    );
     setData(list2);
     window.scrollTo(0, 0);
   }, [id, props.data, props.single]);
@@ -77,7 +82,10 @@ const Listing = (props) => {
         } else {
           //page == double cat
           item.items.forEach((item_) => {
-            if (item_.cat_name.split(" ").join("-").toLowerCase() === id.split(" ").join("-").toLowerCase()) {
+            if (
+              item_.cat_name.split(" ").join("-").toLowerCase() ===
+              id.split(" ").join("-").toLowerCase()
+            ) {
               item_.products.forEach((product) => {
                 if (product.brand.toLowerCase() === keyword.toLowerCase()) {
                   itemsData.push({
@@ -93,7 +101,9 @@ const Listing = (props) => {
       });
     }
 
-    const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
+    const list2 = itemsData.filter(
+      (item, index) => itemsData.indexOf(item) === index
+    );
     setData(list2);
     window.scrollTo(0, 0);
   };
@@ -107,7 +117,9 @@ const Listing = (props) => {
           if (id === item.cat_name.toLowerCase()) {
             item.items.forEach((item_) => {
               item_.products.forEach((product) => {
-                let price = parseInt(product.price.toString().replace(/,/g, ""));
+                let price = parseInt(
+                  product.price.toString().replace(/,/g, "")
+                );
                 if (minValue <= price && maxValue >= price) {
                   itemsData.push({
                     ...product,
@@ -120,9 +132,14 @@ const Listing = (props) => {
           }
         } else {
           item.items.forEach((item_) => {
-            if (item_.cat_name.split(" ").join("-").toLowerCase() === id.split(" ").join("-").toLowerCase()) {
+            if (
+              item_.cat_name.split(" ").join("-").toLowerCase() ===
+              id.split(" ").join("-").toLowerCase()
+            ) {
               item_.products.forEach((product) => {
-                let price = parseInt(product.price.toString().replace(/,/g, ""));
+                let price = parseInt(
+                  product.price.toString().replace(/,/g, "")
+                );
                 if (minValue <= price && maxValue >= price) {
                   itemsData.push({
                     ...product,
@@ -137,7 +154,9 @@ const Listing = (props) => {
       });
     }
 
-    const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
+    const list2 = itemsData.filter(
+      (item, index) => itemsData.indexOf(item) === index
+    );
     setData(list2);
   };
 
@@ -162,7 +181,10 @@ const Listing = (props) => {
           }
         } else {
           item.items.forEach((item_) => {
-            if (item_.cat_name.split(" ").join("-").toLowerCase() === id.split(" ").join("-").toLowerCase()) {
+            if (
+              item_.cat_name.split(" ").join("-").toLowerCase() ===
+              id.split(" ").join("-").toLowerCase()
+            ) {
               item_.products.forEach((product) => {
                 if (product.rating === keyword) {
                   itemsData.push({
@@ -178,7 +200,9 @@ const Listing = (props) => {
       });
     }
 
-    const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
+    const list2 = itemsData.filter(
+      (item, index) => itemsData.indexOf(item) === index
+    );
     setData(list2);
     window.scrollTo(0, 0);
   };
@@ -214,7 +238,7 @@ const Listing = (props) => {
                 <Link
                   to={`/cat/${sessionStorage
                     .getItem("cat")
-                    .toLowerCase()}/${id.toLowerCase()}`}
+                    ?.toLowerCase()}/${id.toLowerCase()}`}
                   style={{ textTransform: "capitalize" }}
                 >
                   <ArrowForwardIosIcon style={{ fontSize: "18px" }} /> {id}

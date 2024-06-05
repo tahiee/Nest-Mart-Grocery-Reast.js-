@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import MegaImgt from "../../../images/360_F_712724773_cFHfl8fvajfRJntpVHI2o4kI3ram9ZbE.jpg";
 
-const Navbar = (props) => {
+export const Navbar = (props) => {
   const [navData, setnavData] = useState([]);
 
   useEffect(() => {
@@ -102,33 +102,33 @@ const Navbar = (props) => {
                   {/* Conductions of nav 3 elements groceries , electronic & fashion ends */}
 
                   {/* <li className="list-inline-item">
-                    <Button>
-                      <Link to={"/about"}>About</Link>
-                    </Button>
-                  </li> */}
+              <Button>
+                <Link to={"/about"}>About</Link>
+              </Button>
+            </li> */}
 
                   {/* Vendor Li start */}
                   {/* <li className="list-inline-item">
-                    <Button>
-                      <Link>Vendor</Link>
-                      <KeyboardArrowDown />
-                    </Button>
+              <Button>
+                <Link>Vendor</Link>
+                <KeyboardArrowDown />
+              </Button>
 
-                    <div className="dropDown_Menu">
-                      <ul>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>About</Link>
-                          </Button>
-                        </li>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Contact</Link>
-                          </Button>
-                        </li>
-                      </ul>
-                    </div>
-                  </li> */}
+              <div className="dropDown_Menu">
+                <ul>
+                  <li>
+                    <Button>
+                      <Link to={"/about"}>About</Link>
+                    </Button>
+                  </li>
+                  <li>
+                    <Button>
+                      <Link to={"/about"}>Contact</Link>
+                    </Button>
+                  </li>
+                </ul>
+              </div>
+            </li> */}
                   {/* vendor li ends */}
 
                   <li className="list-inline-item">
@@ -203,82 +203,82 @@ const Navbar = (props) => {
                         {/* mega menu col 1 starts */}
 
                         {/* <div className="col">
-                          <h4 className="text-g">Fruites & Vegetabels</h4>
-                          <ul className="mt-3 mb-0">
-                            <li>
-                              <Link to="">Meat & Poultry</Link>
-                            </li>
-                            <li>
-                              <Link to="">Fresh Vegetables</Link>
-                            </li>
-                            <li>
-                              <Link to="">Herbs & Seasonings </Link>
-                            </li>
-                            <li>
-                              <Link to="">Cuts & Sprouts</Link>
-                            </li>
-                            <li>
-                              <Link to="">Exotis Fruits & Veggies</Link>
-                            </li>
-                            <li>
-                              <Link to="">Packges & Products</Link>
-                            </li>
-                          </ul>
-                        </div> */}
+              <h4 className="text-g">Fruites & Vegetabels</h4>
+              <ul className="mt-3 mb-0">
+                <li>
+                  <Link to="">Meat & Poultry</Link>
+                </li>
+                <li>
+                  <Link to="">Fresh Vegetables</Link>
+                </li>
+                <li>
+                  <Link to="">Herbs & Seasonings </Link>
+                </li>
+                <li>
+                  <Link to="">Cuts & Sprouts</Link>
+                </li>
+                <li>
+                  <Link to="">Exotis Fruits & Veggies</Link>
+                </li>
+                <li>
+                  <Link to="">Packges & Products</Link>
+                </li>
+              </ul>
+            </div> */}
 
                         {/* mega menu col 1 ends */}
                         {/* mega menu col 2 starts */}
 
                         {/* <div className="col">
-                          <h4 className="text-g">Breakfast & Dairy</h4>
-                          <ul className="mt-3 mb-0">
-                            <li>
-                              <Link to="">Meat & Poultry</Link>
-                            </li>
-                            <li>
-                              <Link to="">Fresh Vegetables</Link>
-                            </li>
-                            <li>
-                              <Link to="">Herbs & Seasonings </Link>
-                            </li>
-                            <li>
-                              <Link to="">Cuts & Sprouts</Link>
-                            </li>
-                            <li>
-                              <Link to="">Exotis Fruits & Veggies</Link>
-                            </li>
-                            <li>
-                              <Link to="">Packges & Products</Link>
-                            </li>
-                          </ul>
-                        </div> */}
+              <h4 className="text-g">Breakfast & Dairy</h4>
+              <ul className="mt-3 mb-0">
+                <li>
+                  <Link to="">Meat & Poultry</Link>
+                </li>
+                <li>
+                  <Link to="">Fresh Vegetables</Link>
+                </li>
+                <li>
+                  <Link to="">Herbs & Seasonings </Link>
+                </li>
+                <li>
+                  <Link to="">Cuts & Sprouts</Link>
+                </li>
+                <li>
+                  <Link to="">Exotis Fruits & Veggies</Link>
+                </li>
+                <li>
+                  <Link to="">Packges & Products</Link>
+                </li>
+              </ul>
+            </div> */}
 
                         {/* mega menu col 2 ends */}
                         {/* mega menu col 3 starts */}
 
                         {/* <div className="col">
-                          <h4 className="text-g">Meat & Seafood</h4>
-                          <ul className="mt-3 mb-0">
-                            <li>
-                              <Link to="">Meat & Poultry</Link>
-                            </li>
-                            <li>
-                              <Link to="">Fresh Vegetables</Link>
-                            </li>
-                            <li>
-                              <Link to="">Herbs & Seasonings </Link>
-                            </li>
-                            <li>
-                              <Link to="">Cuts & Sprouts</Link>
-                            </li>
-                            <li>
-                              <Link to="">Exotis Fruits & Veggies</Link>
-                            </li>
-                            <li>
-                              <Link to="">Packges & Products</Link>
-                            </li>
-                          </ul>
-                        </div> */}
+              <h4 className="text-g">Meat & Seafood</h4>
+              <ul className="mt-3 mb-0">
+                <li>
+                  <Link to="">Meat & Poultry</Link>
+                </li>
+                <li>
+                  <Link to="">Fresh Vegetables</Link>
+                </li>
+                <li>
+                  <Link to="">Herbs & Seasonings </Link>
+                </li>
+                <li>
+                  <Link to="">Cuts & Sprouts</Link>
+                </li>
+                <li>
+                  <Link to="">Exotis Fruits & Veggies</Link>
+                </li>
+                <li>
+                  <Link to="">Packges & Products</Link>
+                </li>
+              </ul>
+            </div> */}
 
                         {/* mega menu col 3 ends */}
 
@@ -293,20 +293,20 @@ const Navbar = (props) => {
                   {/* Blog start */}
 
                   {/* <li className="list-inline-item">
+              <Button>
+                <Link>Blog</Link>
+                <KeyboardArrowDown />
+              </Button>
+              <div className="dropDown_Menu">
+                <ul>
+                  <li>
                     <Button>
-                      <Link>Blog</Link>
-                      <KeyboardArrowDown />
+                      <Link to={"/about"}>Blogs</Link>
                     </Button>
-                    <div className="dropDown_Menu">
-                      <ul>
-                        <li>
-                          <Button>
-                            <Link to={"/about"}>Blogs</Link>
-                          </Button>
-                        </li>
-                      </ul>
-                    </div>
-                  </li> */}
+                  </li>
+                </ul>
+              </div>
+            </li> */}
 
                   {/* blog ends */}
 
@@ -402,5 +402,4 @@ const Navbar = (props) => {
     </>
   );
 };
-
 export default Navbar;
