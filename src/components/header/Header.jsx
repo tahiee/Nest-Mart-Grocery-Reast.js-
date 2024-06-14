@@ -101,16 +101,18 @@ const Header = (props) => {
                     style={{ marginLeft: "auto" }}
                   >
                     {/* Location when width 992 */}
-                    {
-                      windowWidth < 992 &&
-                    <div className="countryWrapper" style={{marginRight:"5px"}}>
-                      <SelectDrop
-                        data={countryList}
-                        placeholder={"Your Location"}
-                        icon={<LocationOnIcon style={{ opacity: "0.5" }} />}
-                      />
-                    </div>
-                    }
+                    {windowWidth < 992 && (
+                      <div
+                        className="countryWrapper"
+                        style={{ marginRight: "5px" }}
+                      >
+                        <SelectDrop
+                          data={countryList}
+                          placeholder={"Your Location"}
+                          icon={<LocationOnIcon style={{ opacity: "0.5" }} />}
+                        />
+                      </div>
+                    )}
                     {/* end Location when width 992 */}
 
                     <div
@@ -128,7 +130,7 @@ const Header = (props) => {
               </div>
 
               {/* headerSearch start */}
-              <div className="col-sm-5 ResPart2" style={{paddingTop:"7px"}}>
+              <div className="col-sm-5 ResPart2" style={{ paddingTop: "7px" }}>
                 <div
                   className={`headerSearch d-flex align-items-center ${
                     isopenSearch === true ? "open" : ""
@@ -199,14 +201,16 @@ const Header = (props) => {
                         </span>
                       </li>
                       <li className="list-inline-items">
-                        <span>
-                          {" "}
-                          <img src={IconCart} />
-                          <span className="badge bg-success rounded-circle">
-                            2
+                        <Link to={"/cart"}>
+                          <span>
+                            {" "}
+                            <img src={IconCart} />
+                            <span className="badge bg-success rounded-circle">
+                              2
+                            </span>
+                            Cart
                           </span>
-                          Cart
-                        </span>
+                        </Link>
                       </li>
                       <li className="list-inline-items">
                         <span onClick={() => setOpenDropDown(!openDropDown)}>
@@ -228,7 +232,9 @@ const Header = (props) => {
                             </li>
                             <li>
                               <Button className="align-items-center">
+                                <Link to={"/cart"}>
                                 <FavoriteBorderOutlined /> My Cart List
+                                </Link>
                               </Button>{" "}
                             </li>
                             <li>

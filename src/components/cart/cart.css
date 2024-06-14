@@ -1,0 +1,39 @@
+.CartSection {
+  padding: 35px 0px;
+  width: 100%;
+  height: auto;
+}
+
+.clearCart {
+  font-weight: 600;
+}
+
+.cartWrapper table thead {
+  background-color: #f1f1f1 !important;
+  overflow: hidden;
+}
+
+.cartWrapper table thead th:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.cartWrapper table thead th:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.cartWrapper table tbody td .img {
+  width: 150px;
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.info a {
+  text-decoration: none;
+  color: black;
+}
+.cartWrapper table tbody td {
+  vertical-align: middle;
+}
+.cartRightBox{
+    padding-left: 150px;
+}

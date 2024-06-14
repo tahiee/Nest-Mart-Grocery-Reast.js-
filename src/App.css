@@ -82,6 +82,10 @@ img:focus {
 p {
   color: #7e7e7e;
 }
+a{
+  text-decoration: none;
+  color: black;
+}
 .hd {
   font-size: 30px;
   font-weight: 500;
@@ -300,7 +304,7 @@ p {
   font-weight: 600;
 }
 .detailPage .productInfo .priceSec .priceLarge {
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 600;
 }
 .detailPage .productInfo .priceSec .text-org {
@@ -308,7 +312,7 @@ p {
   font-weight: 400;
 }
 .detailPage .productInfo .priceSec .text-light {
-  font-size: 30px !important;
+  font-size: 22px !important;
   font-weight: 700 !important;
   text-decoration: line-through !important;
 }
@@ -385,12 +389,12 @@ p {
   height: auto;
 }
 .addCartSection .counterSection {
-  width: 100px;
+  width: 80px;
   height: 60px;
   border: 1px solid #3bb77e;
   border-radius: 10px;
   overflow: hidden;
-  padding: 10px;
+  padding: 10px 12px;
 }
 .addCartSection .counterSection input {
   width: 80px;

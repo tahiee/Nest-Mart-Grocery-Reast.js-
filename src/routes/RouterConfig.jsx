@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "../components/header/Header";
 import Home from "../pages/home/Home";
@@ -9,10 +9,14 @@ import NotFount from "../components/notFound/NotFount";
 import Details from "../pages/details/Details";
 import dbJson from "../../db.json";
 import axios from "axios";
+import Cart from "../components/cart/Cart";
+import context from "react-bootstrap/esm/AccordionContext";
+
+const MyContext = createContext();
 
 const RouterConfig = (props) => {
   const [productData, setProductData] = useState([]);
-
+  const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     // getData("http://localhost:3000/productData");
     setTimeout(() => {
@@ -29,10 +33,29 @@ const RouterConfig = (props) => {
   //     console.log(error);
   //   }
   // };
+
+  // const addtoCart = async (item) => {
+  //   item.quantity = 1  
+  //   try {
+  //     await axios.post('https://localhost:3005/cartItems')
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // };
+  const addtoCart = async (item) => {
+    item.quantity = 1  
+  };
+
+  const value = {
+    addtoCart,
+    // cartItems,
+    // removeItemsfromCart,
+    // emptyCart,
+  };
   return (
     <BrowserRouter>
-      <Header data={productData} />
-
+      <MyContext.Provider value={value}>
+        <Header data={productData} />
         <Routes>
           <Route exact path="/" element={<Home data={productData} />} />
           <Route
@@ -51,12 +74,16 @@ const RouterConfig = (props) => {
             path="/product/:id"
             element={<Details data={productData} />}
           />
+          <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/404" element={<NotFount />} />
         </Routes>
 
-      <Footer />
+        <Footer />
+      </MyContext.Provider>
     </BrowserRouter>
   );
 };
 
 export default RouterConfig;
+
+export { MyContext };

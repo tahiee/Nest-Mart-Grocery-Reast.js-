@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import "./product.css";
 import Rating from "@mui/material/Rating";
 import { Button } from "@mui/material";
@@ -10,23 +10,31 @@ import {
   RemoveRedEyeOutlined,
 } from "@mui/icons-material";
 import Tooltip from "@mui/material/Tooltip";
+import context from "react-bootstrap/esm/AccordionContext";
+import { MyContext } from "../../routes/RouterConfig";
 
 const Product = (props) => {
   const [productData, setproductData] = useState();
+  const context = useContext(MyContext);
 
   useEffect(() => {
     setproductData(props.item);
     // console.log({props})
   }, [props.item]);
 
-  const setProductCat=()=>{
-    sessionStorage.setItem('parentCat', productData.parentCatName);
-    sessionStorage.setItem('subCatName', productData.subCatName);
-}
+  const setProductCat = () => {
+    sessionStorage.setItem("parentCat", productData.parentCatName);
+    sessionStorage.setItem("subCatName", productData.subCatName);
+  };
+
+  const addtoCart = (item) => {
+    context.addtoCart(item);
+    // console.log(item);
+  };
 
   return (
     <>
-      <div className="productThumb"  onClick={setProductCat}>
+      <div className="productThumb" onClick={setProductCat}>
         {productData?.tag !== null && productData?.tag !== undefined && (
           <span className={`badge ${productData.tag}`}>{productData.tag}</span>
         )}
@@ -38,7 +46,7 @@ const Product = (props) => {
                 <div className="p-4">
                   <img
                     src={productData.catImg + "?im=Resize=(420,420)"}
-                    className="w-100" 
+                    className="w-100"
                   />
                 </div>
                 <div className="overLay tranisition">
@@ -96,6 +104,7 @@ const Product = (props) => {
               <Button
                 className="w-100 bg-g brand-Button mt-3"
                 style={{ width: props.buttonWidth }}
+                onClick={() => addtoCart(productData)}
               >
                 <AddShoppingCartIcon className="addshopicon" />
                 Add
